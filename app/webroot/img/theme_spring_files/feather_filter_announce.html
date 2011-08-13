@@ -1,0 +1,38 @@
+
+<!-- saved from url=(0062)http://featherservices.aviary.com/feather_filter_announce.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript">
+//<![CDATA[
+
+function on_load_handler() {
+
+	// listen for the parent to tell us the image filter
+	// has returned
+	if (window.addEventListener) {
+		//console.log("FTA: adding listener");
+		window.addEventListener("message", function(e) {
+			if (e.data.substr(0, 10) == "avpw_load:") {
+				framename = e.data.substring(10);
+				//console.log("FTA: firing listener");
+
+				var i, data;
+				i = parent[framename].document.getElementsByTagName("data");
+				if (i.length > 0) {
+					data = i[0].textContent;
+					data = data.replace(/^\s+|\s+$/g, ''); // strip space
+					parent.postMessage("avpw:filter_result:" + data, "*");
+				}
+			}
+		}, false);
+	}
+}
+
+//]]>
+</script>
+</head>
+
+<body onload="on_load_handler()">
+
+
+
+</body></html>

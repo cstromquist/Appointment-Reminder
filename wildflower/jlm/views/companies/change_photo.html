@@ -1,0 +1,13 @@
+    <form action="${action}" enctype="multipart/form-data" method="post">
+        <fieldset style="display:none;">
+            <input type="hidden" name="_method" value="POST" />
+        </fieldset>
+        <div class="input title_input">
+            <label for="CompanyTitle">Upload your company photo</label>
+            <input id="CompanyTitle" type="file" size="60" name="data[Company][Image/photo]" />
+        </div>
+        <div class="submit wf-form-button">
+            <input type="submit" value="<l18n>Submit</l18n>" />
+        </div>
+        <div class="cancel-edit"> or <a href="#Cancel"><l18n>Cancel</l18n></a></div>
+    </form>

@@ -1,0 +1,47 @@
+
+<!-- saved from url=(0062)http://featherservices.aviary.com/feather_target_announce.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript">
+//<![CDATA[
+
+    function on_load_handler() {
+        var framename;
+
+        //console.log("FTA: onload_handler");
+        // listen for the parent to tell us the image submission
+        // has returned
+        if (window.addEventListener) {
+            //console.log("FTA: adding listener");
+            window.addEventListener("message", function (e) {
+                framename = null;
+
+                if (e.data.substr(0, 10) == "avpw_load:") {
+                    framename = e.data.substring(10);
+                } else if (e.data == "avpw_load") {
+                    framename = 'avpw_img_submit_target'; // old way
+                }
+
+                if (framename) {
+                    //console.log("FTA: firing listener");
+                    var i, url;
+                    i = parent[framename].document.getElementsByTagName("url");
+                    if (i.length > 0) {
+                        url = i[0].textContent;
+                        url = url.replace(/^\s+|\s+$/g, '');
+                        //parent.postMessage("avpw:image_saved:" + url, "*");
+                        parent.postMessage("avpw:" + url, "*");
+                    }
+                }
+            }, false);
+        }
+    }
+
+//]]>
+</script>
+</head>
+
+<body onload="on_load_handler()">
+
+
+
+</body></html>
