@@ -2,6 +2,8 @@ $.jlm.component('TechnicianChangePhoto', 'technicians.admin_edit', function() {
     
     $('.tech_photo a').click(function() {
         
+        $('#tech-photo-instr').css('display', 'block');
+         
         var buttonEl = $(this);
         
         buttonEl.hide();
@@ -31,6 +33,7 @@ $.jlm.component('TechnicianChangePhoto', 'technicians.admin_edit', function() {
             hiddenContentEls.show();
             contentEl.height('auto');
             buttonEl.show();
+            $('#tech-photo-instr').css('display', 'none');
             return false;
         });
         
