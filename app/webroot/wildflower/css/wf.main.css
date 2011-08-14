@@ -464,6 +464,8 @@ select {
 	color: #fff;
     background: #650000;
     border: 1px solid #fff;
+    padding: 5px 10px;
+    margin: 0 0 14px 0;
 }
 
 .flash-success {

@@ -5,9 +5,14 @@ class Technician extends AppModel {
 		'name' => array(
 	       'rule' => 'notEmpty', 
 	       'allowEmpty' => false, 
-	       'required' => true, 
-	       'on' => 'create',
+	       'required' => true,
 	       'message' => 'Technician name is required.'
+	    ),
+	    'bio' => array(
+	       'rule' => 'notEmpty', 
+	       'allowEmpty' => false, 
+	       'required' => true,
+	       'message' => 'Technician bio is required.'
 	    ),
 		'technician_file_size' => array(
 			'rule' => array('maxLength', 6),

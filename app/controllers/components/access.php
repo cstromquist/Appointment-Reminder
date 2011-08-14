@@ -34,12 +34,37 @@ class AccessComponent extends Object{
 	    return $acl->check($aro, $aco, $action);
 	} 
 	
-	function checkCompanyStatus() {
+	function checkCompanyStatus() {		
 		if(!$this->company) {
 			return false;
 		} elseif($this->company['Company']['status'] == 0) {
 			return false;
 		} else {
+			$messages = array();
+			if(!$this->company['Company']['logo_path']) {
+				App::import('Helper', 'Html'); // loadHelper('Html'); in CakePHP 1.1.x.x
+        		$html = new HtmlHelper();
+				$messages[] = array(
+					'message' => sprintf('Please be sure to add a logo to your company. %s', $html->link('Click here to add a logo', array('controller' => 'companies', 'action' => 'edit'))),
+					'params' => array('class' => 'flash-error'),
+					'layout' => 'default',
+					'element' => 'default'
+				);
+			}
+			if(!$this->company['Company']['photo_path']) {
+				App::import('Helper', 'Html'); // loadHelper('Html'); in CakePHP 1.1.x.x
+        		$html = new HtmlHelper();
+				$messages[] = array(
+					'message' => sprintf('Please be sure to add a photo to your company. %s', $html->link('Click here to add a photo', array('controller' => 'companies', 'action' => 'edit'))),
+					'params' => array('class' => 'flash-error'),
+					'layout' => 'default',
+					'element' => 'default'
+				);
+			}
+			if(count($messages)) {
+				$this->Session->write('Message.multiFlash', $messages);
+			}
+			
 			return true;
 		}
 	}

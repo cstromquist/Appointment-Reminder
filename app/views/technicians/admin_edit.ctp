@@ -18,7 +18,7 @@
 <div id="technician_details">
 	<div class="tech_photo">
 	<?php	
-		if($this->data['Technician']['image_path']) {
+		if(isset($this->data['Technician']['image_path'])) {
 			echo $html->image('uploads/technicians/small/'.$this->data['Technician']['image_path']);
 		} else {
 			echo $html->image('avatar.png');
@@ -32,7 +32,7 @@
 	<div class="tech_info">
 		<?php
 	    echo 
-	    $form->create('Technician', array('action' => 'admin_update', 'class' => 'editor_form', 'type' => 'file')),
+	    $form->create('Technician', array('action' => 'admin_edit', 'class' => 'editor_form', 'type' => 'file')),
 	    $form->hidden('company_id'),
 	    $form->input('name', array('between' => '', 'label' => 'Technician name')),
 	    $form->input('bio', array('between' => '', 'label' => 'Technician Bio', 'type' => 'text', 'rows' => 10, 'cols' => 60)),

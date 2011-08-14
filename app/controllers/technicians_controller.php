@@ -36,20 +36,20 @@ class TechniciansController extends AppController {
      * @param int $id Technician ID
      */
     function admin_edit($id = null) {
-        $technician = $this->Technician->findById($id);
-        $this->data = $technician;
-		$this->set(compact('technician')); 
+        if(!empty($this->data)) {
+        	if($this->Technician->save($this->data)) {
+				if (!$this->Technician->exists()) return $this->cakeError('object_not_found');
+		        $this->Session->setFlash(__('Technician saved!', true), 'default', array('class' => 'flash-success'));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The technician could not be saved. Please, try again.', true), 'default', array('class' => 'flash-error'));
+			}
+        } else {
+        	$technician = $this->Technician->findById($id);
+        	$this->data = $technician;
+			$this->set(compact('technician'));
+		} 
     }
-	
-	function admin_update() {
-		if($this->Technician->save($this->data)) {
-			if (!$this->Technician->exists()) return $this->cakeError('object_not_found');
-	        $this->Session->setFlash(__('Technician saved!', true), 'default', array('class' => 'flash-success'));
-		} else {
-			$this->Session->setFlash(__('The technician could not be saved. Please, try again.', true), 'default', array('class' => 'flash-error'));
-		}
-		$this->redirect(array('action' => 'index'));
-	}
 	
 	function admin_delete($id = null) {
 		$tech = $this->Technician->findById($id);
