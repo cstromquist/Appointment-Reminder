@@ -28,6 +28,11 @@
 	<?php	
 		echo $html->link(__('Change Photo', true), array('action' => 'change_photo/' . $this->data['Technician']['id'])); 
 	?>
+	<?php
+	//$thickbox->setProperties(array('id'=>'domId','type'=>'iframe','iframeUrl'=>'/admin/technicians/upload_photo?modal=true', 'title' => 'Upload Technician'));
+	//$thickbox->setPreviewContent('Upload Photo');
+	//echo $thickbox->output();
+	?>
 	</div>
 	<div class="tech_info">
 		<?php
@@ -53,8 +58,5 @@
 <span class="cleaner"></span>
 
 <?php $partialLayout->blockStart('sidebar'); ?>
-    <div id="tech-photo-instr" style="display: none">
-		<img src="<?php echo $this->base ?>/img/tech-photo.png" width="300" />
-		<p><strong>Please upload a vertical photo of the technician.</strong></p>
-	</div>
+    
 <?php $partialLayout->blockEnd(); ?>

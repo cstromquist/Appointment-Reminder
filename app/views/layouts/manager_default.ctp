@@ -8,7 +8,8 @@
 	<meta name="description" content="" />
 	
     <link rel="shortcut icon" href="<?php echo $this->webroot; ?>favicon.ico" type="image/x-icon" />	
-	<?php echo $html->css('datepicker')."\n"; ?> 
+	<?php echo $html->css('datepicker')."\n"; ?>
+	<?php echo $html->css('imgareaselect-animated.css')."\n"; ?>
 	<?php echo $javascript->link('datepicker.js')."\n"; ?> 
 	<?php 
 		$prefix = Configure::read('Routing.admin');

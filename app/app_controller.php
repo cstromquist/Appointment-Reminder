@@ -74,12 +74,17 @@ class AppController extends Controller {
 					$this->redirect(array('controller' => 'faults', 'action' => 'error', 'subscription'));
 				}
 			}
-			if($this->Auth->User('group_id') == 6)
-				$this->layout = 'crp_default';
-			elseif($this->Auth->User('group_id') == 5)
-				$this->layout = 'manager_default';
-			else
-				$this->layout = 'admin_default';
+			// check for modal
+			if(!empty($this->params['url']['modal'])) {
+				$this->layout = 'admin_modal';
+			} else {
+				if($this->Auth->User('group_id') == 6)
+					$this->layout = 'crp_default';
+				elseif($this->Auth->User('group_id') == 5)
+					$this->layout = 'manager_default';
+				else
+					$this->layout = 'admin_default';
+			}
 			
 		} else {
 			$this->layout = 'default';

@@ -56,22 +56,6 @@
 	<?php echo $javascript->link('thickbox-compressed.js')."\n"; ?>
 </head>
 <body>
- 
-<div id="header">
-    <h1 id="site_title"><?php echo hsc($siteName); ?></h1>
-    <?php echo $html->link('Site index', '/', array('title' => __('Visit ', true)  . FULL_BASE_URL, 'id' => 'site_index')); ?>
-    
-    <div id="login_info">
-        <?php echo $htmla->link(__('Logout', true), array('plugin' => null, $prefix => true, 'controller' => 'users', 'action' => 'logout'), array('id' => 'logout')); ?>
-    </div>
-	<ul id="nav">
-        <li><?php echo $htmla->link(__('Dashboard', true), '/' . $prefix, array('strict' => true)); ?></li>
-        <li><?php echo $htmla->link(__('Companies', true), array('plugin' => null, $prefix => true, 'controller' => 'companies', 'action' => 'index')); ?></li>
-        <li class="nav_item_on_right"><?php echo $htmla->link(__('Users', true), array('plugin' => null, $prefix => true, 'controller' => 'users', 'action' => 'index')); ?></li>
-        <li class="nav_item_on_right"><?php echo $htmla->link(__('Global Settings', true), array('plugin' => null, $prefix => true, 'controller' => 'settings', 'action' => 'index')); ?></li>
-        <li class="nav_item_on_right"><?php echo $htmla->link(__('Industry Settings', true), array('plugin' => null, $prefix => true, 'controller' => 'industries', 'action' => 'index')); ?></li>
-    </ul>
-</div>
 
 <div id="wrap">
 	
@@ -88,17 +72,7 @@
         </div>
         </div>
     </div>
-    
-    <?php if (isset($sidebar_for_layout)): ?>
-    <div id="sidebar">
-        <ul>
-            <?php echo $sidebar_for_layout; ?>
-        </ul>
-    </div>
-    <?php endif; ?>
-
-	<?php if (isset($form_for_layout)) echo '</form>'; ?>
-        
+            
     <div class="cleaner"></div>
 </div>
 

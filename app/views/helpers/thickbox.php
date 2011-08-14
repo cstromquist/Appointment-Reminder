@@ -43,7 +43,7 @@ class ThickboxHelper extends AppHelper {
 		elseif($type=='iframe')
 		{
 			$iframeUrl = $this->Html->url($iframeUrl);
-			$href = $iframeUrl . "?KeepThis=true&TB_iframe=true&height=600&width=600";
+			$href = $iframeUrl . "&KeepThis=true&TB_iframe=true&height=600&width=600";
 		}
         elseif($type=='ajax')
         {

@@ -2,7 +2,8 @@
 class TechniciansController extends AppController {
 	
 	var $name = "Technicians";
-	var $components = array("Image","RequestHandler");
+	var $components = array('Image','RequestHandler','JqImgcrop');
+	var $helpers = array('Thickbox','Cropimage');
 	
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -108,4 +109,18 @@ class TechniciansController extends AppController {
 		}
 	}
 	
+	function admin_upload_photo() {
+		
+	}
+	
+	function admin_crop_image(){ 
+		if (!empty($this->data)) { 
+			$uploaded = $this->JqImgcrop->uploadImage($this->data['Technician']['image'], 'img/uploads/technicians/', 'tech_');
+			$this->set('uploaded',$uploaded); 
+		}
+	}
+
+	function admin_save_image() {
+		$this->JqImgcrop->cropImage(151, $this->data['Technician']['x1'], $this->data['Technician']['y1'], $this->data['Technician']['x2'], $this->data['Technician']['y2'], $this->data['Technician']['w'], $this->data['Technician']['h'], $this->data['Technician']['imagePath'], $this->data['Technician']['imagePath']); 
+	}
 }
