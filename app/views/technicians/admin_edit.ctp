@@ -54,7 +54,7 @@
 
 <?php $partialLayout->blockStart('sidebar'); ?>
     <div id="tech-photo-instr" style="display: none">
-		<img src="<?php echo $this->base ?>/img/tech-photo.png" />
+		<img src="<?php echo $this->base ?>/img/tech-photo.png" width="300" />
 		<p><strong>Please upload a vertical photo of the technician.</strong></p>
 	</div>
 <?php $partialLayout->blockEnd(); ?>
