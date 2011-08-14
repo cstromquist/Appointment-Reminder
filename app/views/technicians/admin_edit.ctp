@@ -26,12 +26,12 @@
 	?>
 	<br />
 	<?php	
-		echo $html->link(__('Change Photo', true), array('action' => 'change_photo/' . $this->data['Technician']['id'])); 
+		//echo $html->link(__('Change Photo', true), array('action' => 'change_photo/' . $this->data['Technician']['id'])); 
 	?>
 	<?php
-	//$thickbox->setProperties(array('id'=>'domId','type'=>'iframe','iframeUrl'=>'/admin/technicians/upload_photo?modal=true', 'title' => 'Upload Technician'));
-	//$thickbox->setPreviewContent('Upload Photo');
-	//echo $thickbox->output();
+	$thickbox->setProperties(array('id'=>'domId','type'=>'iframe','iframeUrl'=>'/admin/technicians/upload_photo?modal=true', 'title' => 'Upload Technician'));
+	$thickbox->setPreviewContent('Upload Photo');
+	echo $thickbox->output();
 	?>
 	</div>
 	<div class="tech_info">
