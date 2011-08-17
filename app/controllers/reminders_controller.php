@@ -3,7 +3,7 @@ class RemindersController extends AppController {
 	
 	public $helpers = array('List', 'Time', 'Text', 'Session', 'Form', 'Ajax');
 	public $pageTitle = 'Reminders';
-	public $uses = array('Company', 'Reminder', 'Technician', 'Industry');
+	public $uses = array('Company', 'Reminder', 'Technician', 'Service');
 	public $components = array('Email');
 	
 	function beforeFilter() {
@@ -70,9 +70,9 @@ class RemindersController extends AppController {
 		}
 		$theme = $this->data['Reminder']['theme'];
 		$technician = $this->Technician->findById($this->data['Reminder']['technician_id']);
-		$Industry =& ClassRegistry::init('Industry'); 
-		$servicelist = $Industry->find('list', array('fields' => array('Industry.id', 'Industry.name'), 'order' => array('Industry.name' => 'asc')));
-		$services = $Industry->find('all',array('order' => array('Industry.name' => 'asc')));
+		$Service =& ClassRegistry::init('Service'); 
+		$servicelist = $Service->find('list', array('fields' => array('Service.id', 'Service.name'), 'order' => array('Service.name' => 'asc')));
+		$services = $Service->find('all',array('order' => array('Service.name' => 'asc')));
 		$this->set(compact('theme', 'technician', 'servicelist', 'services'));
 	}
 	
