@@ -12,6 +12,7 @@ class Technician extends AppModel {
 	       'rule' => 'notEmpty', 
 	       'allowEmpty' => false, 
 	       'required' => true,
+	       'on' => 'create',
 	       'message' => 'Technician bio is required.'
 	    ),
 		'technician_file_size' => array(

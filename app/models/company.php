@@ -34,12 +34,12 @@ class Company extends AppModel {
 	   	'Reminder' => array(
 	   		'className' => 'Reminder',
 			'order' => 'Reminder.created ASC'
-	   	)
+	   	),
+	   	'CompanyService'
 	);
 		
 	var $name = 'Company';
     var $actsAs = array('Acl' => array('requester'));
-	var $belongsTo = array('Industry');
 	function parentNode() {
         return null;
     }

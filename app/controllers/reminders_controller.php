@@ -240,10 +240,10 @@ class RemindersController extends AppController {
 		$ig->setTheme($this->data['Reminder']['theme']);
 		
 		if($technician) {
-			if(!file_exists($_SERVER['DOCUMENT_ROOT'] . $this->base . '/app/webroot/img/uploads/technicians/big/' . $technician['Technician']['image_path'])) {
-				die('Tech photo does not exist. Location:' . $_SERVER['DOCUMENT_ROOT'] . $this->base . '/app/webroot/img/uploads/technicians/big/' . $technician['Technician']['image_path']);
+			if(!file_exists($_SERVER['DOCUMENT_ROOT'] . $this->base . '/app/webroot/img/uploads/technicians/' . $technician['Technician']['image_path'])) {
+				die('Tech photo does not exist. Location:' . $_SERVER['DOCUMENT_ROOT'] . $this->base . '/app/webroot/img/uploads/technicians/' . $technician['Technician']['image_path']);
 			}
-			$ig->setPhotoPath($_SERVER['DOCUMENT_ROOT'] . $this->base . '/app/webroot/img/uploads/technicians/big/' . $technician['Technician']['image_path']);
+			$ig->setPhotoPath($_SERVER['DOCUMENT_ROOT'] . $this->base . '/app/webroot/img/uploads/technicians/' . $technician['Technician']['image_path']);
 		} else {
 			if(!file_exists($_SERVER['DOCUMENT_ROOT'] . $this->base . '/app/webroot/img/uploads/companies/photos/big/' . $company['Company']['photo_path'])) {
 				die('Company group photo does not exist');

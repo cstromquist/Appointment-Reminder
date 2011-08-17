@@ -69,7 +69,7 @@
         <li><?php echo $htmla->link(__('Companies', true), array('plugin' => null, $prefix => true, 'controller' => 'companies', 'action' => 'index')); ?></li>
         <li class="nav_item_on_right"><?php echo $htmla->link(__('Users', true), array('plugin' => null, $prefix => true, 'controller' => 'users', 'action' => 'index')); ?></li>
         <li class="nav_item_on_right"><?php echo $htmla->link(__('Global Settings', true), array('plugin' => null, $prefix => true, 'controller' => 'settings', 'action' => 'index')); ?></li>
-        <li class="nav_item_on_right"><?php echo $htmla->link(__('Industry Settings', true), array('plugin' => null, $prefix => true, 'controller' => 'industries', 'action' => 'index')); ?></li>
+        <li class="nav_item_on_right"><?php echo $htmla->link(__('Service Settings', true), array('plugin' => null, $prefix => true, 'controller' => 'services', 'action' => 'index')); ?></li>
     </ul>
 </div>
 

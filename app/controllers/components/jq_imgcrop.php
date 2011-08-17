@@ -2,8 +2,8 @@
 class JqImgcropComponent extends Object { 
 
     function uploadImage($uploadedInfo, $uploadTo, $prefix){
-        //$uploadTo = 'img/' . $uploadTo; 
-        $webpath = $uploadTo; 
+    	$webpath = $uploadTo;
+        $uploadTo = 'img/' . $uploadTo; 
         $upload_dir = WWW_ROOT.str_replace("/", DS, $uploadTo); 
         $upload_path = $upload_dir.DS; 
         $max_file = "34457280";                         // Approx 30MB 
@@ -12,8 +12,9 @@ class JqImgcropComponent extends Object {
         $userfile_name = $uploadedInfo['name']; 
         $userfile_tmp =  $uploadedInfo["tmp_name"]; 
         $userfile_size = $uploadedInfo["size"]; 
-        $filename = $prefix.basename($uploadedInfo["name"]); 
-        $file_ext = substr($filename, strrpos($filename, ".") + 1); 
+        $filename = $prefix.basename($uploadedInfo["name"]);
+        $file_ext = substr($filename, strrpos($filename, ".") + 1);
+		$filename = String::uuid() . "." . $file_ext; 
         $uploadTarget = $upload_path.$filename; 
 
         if(empty($uploadedInfo)) { 
@@ -34,7 +35,7 @@ class JqImgcropComponent extends Object {
                 $uploaded = $this->resizeImage($uploadTarget,$width,$height,$scale); 
             } 
         } 
-        return array('imagePath' => $webpath.$filename, 'imageName' => $filename, 'imageWidth' => $this->getWidth($uploadTarget), 'imageHeight' => $this->getHeight($uploadTarget)); 
+        return array('imagePath' => $webpath.DS.$filename, 'imageName' => $filename, 'imageWidth' => $this->getWidth($uploadTarget), 'imageHeight' => $this->getHeight($uploadTarget)); 
     } 
 
     function getHeight($image) { 
@@ -102,9 +103,16 @@ $ext = strtolower(substr(basename($image), strrpos(basename($image), ".") + 1));
 
     function cropImage($thumb_width, $x1, $y1, $x2, $y2, $w, $h, $thumbLocation, $imageLocation){
     	$imageLocation = 'img/' . $imageLocation;
+		$thumbLocation = 'img/' . $thumbLocation;
         $scale = $thumb_width/$w; 
         $cropped = $this->resizeThumbnailImage(WWW_ROOT.str_replace("/", DS,$thumbLocation),WWW_ROOT.str_replace("/", DS,$imageLocation),$w,$h,$x1,$y1,$scale);
         return $cropped; 
-    } 
+    }
+	
+	function deleteImage($imageName, $folder) {
+		$image = WWW_ROOT.'img/' . $folder . DS . $imageName;
+		if(is_file($image))
+			unlink($image);
+	}
 } 
 ?>
