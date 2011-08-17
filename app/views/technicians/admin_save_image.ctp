@@ -1,13 +1,14 @@
-<h2 class="section">Success! Your final image is below.</h2>
+<!-- THIS ISN'T WORKING IN IE..WHAT A SURPRISE!!..SO JUST RELOADING PARENT AND CLOSING WINDOW FOR NOW.. -->
+<!--h2 class="section">Success! Your final image is below.</h2-->
 <script type="text/javascript">
-	function closeMe() {
+	//function closeMe() {
 		parent.location.reload();
 		window.close();
-	}
+	//}
 </script>
-<div style="text-align: center;">
+<!--div style="text-align: center;">
 	<?php echo $html->image('uploads/technicians/'.$technician['Technician']['image_path']); ?><br />
 	Don't like it? <?php echo $html->link('Click here to upload a new photo', array('controller' => 'technicians', 'action' => 'upload_photo')) ?>
 	<br /> - or - <br /> 
 	<input type="button" onClick="closeMe()" value="Continue and close window">
-</div>
+</div-->

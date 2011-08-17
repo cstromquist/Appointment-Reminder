@@ -8,7 +8,9 @@ class CropimageHelper extends Helper {
                     var scaleX = $thumbW / selection.width; 
                     var scaleY = $thumbH / selection.height; 
 					
-                    $('#thumbnail + div > img').css({ 
+					if(scaleX == Infinity || scaleY == Infinity) return false; 
+					
+                    $('#thumbnail_preview').css({ 
                         width: Math.round(scaleX * $imgW) + 'px', 
                         height: Math.round(scaleY * $imgH) + 'px', 
                         marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px', 
@@ -56,7 +58,7 @@ class CropimageHelper extends Helper {
         $h =             $this->Form->hidden('h', array("value" => "", "id"=>"h")); 
         $imgP =      $this->Form->hidden('imagePath', array("value" => $imagePath)); 
         $imgTum = $this->Html->image($imagePath, array('style'=>'float: left; margin-right: 10px;', 'id'=>'thumbnail', 'alt'=>'Create Thumbnail')); 
-        $imgTumPrev = $this->Html->image($imagePath, array('style'=>'position: relative;', 'id'=>'thumbnail', 'alt'=>'Thumbnail Preview')); 
+        $imgTumPrev = $this->Html->image($imagePath, array('style'=>'position: relative;', 'id'=>'thumbnail_preview', 'alt'=>'Thumbnail Preview')); 
         return $this->output("$imgTum 
         <div style=\"position:relative; overflow:hidden; width:".$tW."px; height:".$tH."px;\">  
             $imgTumPrev 
