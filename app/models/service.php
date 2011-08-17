@@ -1,23 +1,19 @@
 <?php
-class Industry extends AppModel {
+class Service extends AppModel {
 
     public $validate = array(
-		'inudstry_name' => array(
+		'name' => array(
 	       'rule' => array('maxLength', 255), 
 	       'allowEmpty' => false, 
-	       'required' => true, 
-	       'on' => 'admin_create'
+	       'required' => true,
 	    )
 	);
 		
 	public $hasMany = array(
-	   'Company' => array(
-	       'className' => 'Company',
-	       'order' => 'Company.created ASC'
-	   )
+	   'CompanyService'
 	);
 		
-	var $name = 'Industry';
+	var $name = 'Service';
     var $actsAs = array('Acl' => array('requester'));
 	function parentNode() {
         return null;

@@ -70,57 +70,54 @@ class TechniciansController extends AppController {
 		}
 		
 	}
-	
-	 /* Change the technician photo
-     * 
-     * @param int $id Technician ID
-     */
-	function admin_change_photo($id) {
-		if(!$this->data[$this->modelClass]['Image/photo']['name']) {
-			$this->Session->setFlash(__('Please choose an image to upload.', true), 'default',  array('class' => 'flash-error'));
-			$this->redirect(array('action' => 'edit/', $id));
-		}
-		// first delete the old image
-		$technician = $this->Technician->findById($id);
-		if($technician['Technician']['image_path'] != '') {
-			$this->Image->delete_image($technician['Technician']['image_path'], "uploads/technicians");
-		}
-			
-		$image_path = $this->Image->upload_image_and_thumbnail($this->data[$this->modelClass]['Image/photo'], 573, 380, 80, 80, "uploads/technicians");
-    	if(isset($image_path)) {
-     		$this->Session->setFlash(__('Photo successfully uploaded!', true), 'default',  array('class' => 'flash-success'));
-     		$this->Technician->saveField('image_path',$image_path);
-    	}
-    	else {
-     		$this->Session->setFlash(__('The image for this technician could not be saved. Please, try again.', true), 'default',  array('class' => 'flash-error'));
-    	}
 
-		$this->redirect(array('action' => 'edit/', $id));
-	}
-	
 	function admin_create() {
 		print_r($this->data);
 		if(!empty($this->data)) {
 			$this->data['Technician']['company_id'] = $this->Auth->user('company_id');
-			$this->Technician->create($this->data);
-			if ($this->Technician->save($this->data)) {
-				return $this->redirect(array('action' => 'edit', $this->Technician->id));
-	        }
+			if($this->Technician->create($this->data)) {
+				if ($this->Technician->save($this->data)) {
+					return $this->redirect(array('action' => 'edit', $this->Technician->id));
+	        	}
+			}
 		}
 	}
 	
-	function admin_upload_photo() {
-		
+	function admin_upload_photo($id = null) {
+		$this->layout = 'admin_modal';
+		$this->data['Technician']['id'] = $id;
 	}
 	
-	function admin_crop_image(){ 
-		if (!empty($this->data)) { 
-			$uploaded = $this->JqImgcrop->uploadImage($this->data['Technician']['image'], 'img/uploads/technicians/', 'tech_');
+	function admin_crop_image(){
+		$this->layout = 'admin_modal';
+		if (!empty($this->data)) {
+			$uploaded = $this->JqImgcrop->uploadImage($this->data['Technician']['image'], 'uploads/technicians', 'tech_');
 			$this->set('uploaded',$uploaded); 
 		}
 	}
 
-	function admin_save_image() {
-		$this->JqImgcrop->cropImage(151, $this->data['Technician']['x1'], $this->data['Technician']['y1'], $this->data['Technician']['x2'], $this->data['Technician']['y2'], $this->data['Technician']['w'], $this->data['Technician']['h'], $this->data['Technician']['imagePath'], $this->data['Technician']['imagePath']); 
+	function admin_save_image($id =  null) {
+		$this->layout = 'admin_modal';
+		$arrayDir = explode('/', $this->data['Technician']['imagePath']);
+		$image = array_pop($arrayDir);
+		$this->JqImgcrop->cropImage(
+			200, 
+			$this->data['Technician']['x1'], 
+			$this->data['Technician']['y1'],
+			$this->data['Technician']['x2'],
+			$this->data['Technician']['y2'],
+			$this->data['Technician']['w'],
+			$this->data['Technician']['h'],
+			$this->data['Technician']['imagePath'],
+			$this->data['Technician']['imagePath']);
+		$technician = $this->Technician->findById($this->data['Technician']['id']);
+		// first delete the old image
+		if($technician['Technician']['image_path'] != '') {
+			$this->JqImgcrop->deleteImage($technician['Technician']['image_path'], "uploads/technicians");
+		}
+		$technician['Technician']['image_path'] = $image;
+		$this->Technician->set($technician["Technician"]);
+		$this->Technician->save();
+		$this->set(compact('technician'));
 	}
 }

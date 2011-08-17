@@ -2,16 +2,16 @@
 
 <?php
 	echo 
-	$form->create('Industry', array('action' => 'admin_mass_update'));
+	$form->create('Service', array('action' => 'admin_mass_update'));
 ?>
 
 <?php echo $this->element('admin_select_actions'); ?>
 
 <ul class="list">
-    <?php foreach ($industries as $industry): ?>
+    <?php foreach ($services as $service): ?>
         <li class="post-row actions-handle">
-            <span class="row-check"><?php echo $form->checkbox('id.' . $industry['Industry']['id']) ?></span>
-            <span class="title-row"><?php echo $html->link($industry['Industry']['name'], array('action' => 'admin_edit', $industry['Industry']['id']), array('title' => __('Edit this setting.', true))) ?></span>
+            <span class="row-check"><?php echo $form->checkbox('id.' . $service['Service']['id']) ?></span>
+            <span class="title-row"><?php echo $html->link($service['Service']['name'], array('action' => 'admin_edit', $service['Service']['id']), array('title' => __('Edit this setting.', true))) ?></span>
             <span class="cleaner"></span>
         </li>
     <?php endforeach; ?>

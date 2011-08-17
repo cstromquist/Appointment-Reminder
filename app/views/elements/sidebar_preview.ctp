@@ -12,7 +12,7 @@
 	<?php if(isset($technician) && $technician):?>
 	<h3 class="sidebar">Your selected technician for this reminder</h3>
 	<div class="sidebar_tech">
-		<div class="sidebar_tech_photo"><?php echo $html->image('uploads/technicians/small/'.$technician['Technician']['image_path']); ?></div>
+		<div class="sidebar_tech_photo"><?php echo $html->image('uploads/technicians/'.$technician['Technician']['image_path'], array('width' => 150)); ?></div>
 		<div class="sidebar_tech_info">
 			<p class="tech_name"><?php echo $technician['Technician']['name'] ?></p>
 			<p><?php echo $technician['Technician']['bio'] ?></p>

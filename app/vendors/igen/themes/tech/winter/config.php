@@ -32,7 +32,7 @@ define('TOP_BOX_X',30);
 define('TOP_BOX_Y',16);
 
 //photo position and size - x,y,w,h
-define('PHOTO_BOX','430,190,125,175');
+define('PHOTO_BOX','430,220,140,140');
 
 //copyright and credit card items
 define('COPYRIGHT_X',313);

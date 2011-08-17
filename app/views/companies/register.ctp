@@ -10,7 +10,10 @@
 		echo $form->input('name', array('label' => 'Company Name'));
 		echo $form->input('phone', array('label' => 'Company Phone'));
 		echo $form->input('website_url', array('label' => 'Company Website'));
-		echo $form->input('industry_id', array('label' => 'Choose your industry'));
+		echo $form->input('company_services', array('multiple' => 'checkbox', 'type' => 'select', 'label' => 'Services', 'options' => $services));
+		?>
+		<div class="clear"></div>
+		<?php
 		echo $form->input('User.0.name', array('label' => 'Your Name'));
 		echo $form->input('User.0.email', array('label' => 'Your Email'));
 		echo $form->input('User.0.login', array('label' => 'Choose a Username'));

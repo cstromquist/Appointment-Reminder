@@ -121,7 +121,7 @@ a {
 	font-size: 18px;
 	padding: 3px;
 }
-#reguster .input > label {
+#register div.input {
 	margin-top: 15px;
 }
 
@@ -136,7 +136,13 @@ a {
 	font-size: 1.2em;
 	width: 200px;
 }
-
+#register div.input div.checkbox {
+	float: left;
+	width: 50%;
+}
+div.clear {
+	clear: both;
+}
 /* Messages & errors */
 
 #flashMessage {

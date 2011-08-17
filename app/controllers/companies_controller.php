@@ -192,9 +192,9 @@ class CompaniesController extends AppController {
 	 * 
 	 */
 	function register() {
-		$Industry =& ClassRegistry::init('Industry'); 
-		$industries = $Industry->find('list', array('fields' => array('Industry.id', 'Industry.name')));
-		$this->set(compact('industries'));
+		$Service =& ClassRegistry::init('Service'); 
+		$services = $Service->find('list', array('fields' => array('Service.id', 'Service.name')));
+		$this->set(compact('services'));
 		if (!empty($this->data)) {
 			$this->data['Company']['status'] = 0;
 			$this->data['Company']['activation_id'] = $this->Company->create_unique_id();
@@ -248,13 +248,13 @@ class CompaniesController extends AppController {
 		} else {
 			$company = $this->Company->find('first', array('conditions' => array('activation_id' => $id)));
 			if($company) {
-				$industryObject =& ClassRegistry::init('Industry'); 
-				$industry = $industryObject->findById($company['Company']['industry_id']);
+				$serviceObject =& ClassRegistry::init('Service'); 
+				$service = $serviceObject->findById($company['Company']['service_id']);
 				$company['Company']['status'] = 1;
-				$company['Company']['service_message'] = $industry['Industry']['service_message'];
-				$company['Company']['features_benefits'] = $industry['Industry']['features_benefits'];
-				$company['Company']['services'] = $industry['Industry']['services'];
-				$company['Company']['other_services'] = $industry['Industry']['other_services'];
+				$company['Company']['service_message'] = $service['Service']['service_message'];
+				$company['Company']['features_benefits'] = $service['Service']['features_benefits'];
+				$company['Company']['services'] = $service['Service']['services'];
+				$company['Company']['other_services'] = $service['Service']['other_services'];
 				$this->Company->save($company);
 				$message = "Your company has been activated!";
 				$flag = true;
