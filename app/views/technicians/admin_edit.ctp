@@ -29,7 +29,7 @@
 		//echo $html->link(__('Change Photo', true), array('action' => 'change_photo/' . $this->data['Technician']['id'])); 
 	?>
 	<?php
-	$thickbox->setProperties(array('id'=>'domId','type'=>'iframe','iframeUrl'=>'/admin/technicians/upload_photo/'.$this->data['Technician']['id'], 'title' => 'Upload Technician'));
+	$thickbox->setProperties(array('id'=>'domId','type'=>'iframe','iframeUrl'=>'/admin/technicians/upload_photo/'.$this->data['Technician']['id'], 'title' => 'Upload Technician Photo'));
 	$thickbox->setPreviewContent('Upload Photo');
 	echo $thickbox->output();
 	?>

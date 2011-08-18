@@ -1,4 +1,9 @@
 	<h2 class="section">Please choose a vertical photo of the technician to upload.</h2>
+	<?php 
+	if ($session->check('Message.flash')) {
+	    $session->flash();
+	}
+	?>
 	<div id="tech-photo-instr">
 		<img src="<?php echo $this->base ?>/img/tech-photo.png" width="300" />
 	</div>

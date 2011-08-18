@@ -86,11 +86,25 @@ class TechniciansController extends AppController {
 		$this->data['Technician']['id'] = $id;
 	}
 	
-	function admin_crop_image(){
+	function admin_crop_image($id = null){
 		$this->layout = 'admin_modal';
 		if (!empty($this->data)) {
-			$uploaded = $this->JqImgcrop->uploadImage($this->data['Technician']['image'], 'uploads/technicians', 'tech_');
-			$this->set('uploaded',$uploaded); 
+			// check to make sure they actually uploaded something
+			if(!$this->data['Technician']['image']['name']) {
+				$this->Session->setFlash('Please upload an image.', 'default', array('class' => 'flash-error'));
+				$this->redirect(array('controller' => 'technicians', 'action' => 'upload_photo', $this->data['Technician']['id']));
+			} else {
+				// check to make sure image is in jpeg format
+				$filetype = $this->JqImgcrop->getFileExtension($this->data['Technician']['image']['name']);
+				$filetype = strtolower($filetype);
+				if (($filetype != "jpeg")  && ($filetype != "jpg")) {
+					$this->Session->setFlash('Please ensure image is jpeg or jpg format.', 'default', array('class' => 'flash-error'));
+					$this->redirect(array('controller' => 'technicians', 'action' => 'upload_photo', $this->data['Technician']['id']));
+				} else {
+					$uploaded = $this->JqImgcrop->uploadImage($this->data['Technician']['image'], 'uploads/technicians', 'tech_');
+					$this->set('uploaded',$uploaded);
+				}
+			} 
 		}
 	}
 
