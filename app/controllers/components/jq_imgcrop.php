@@ -74,10 +74,10 @@ $ext = strtolower(substr(basename($image), strrpos(basename($image), ".") + 1));
         return $image; 
     } 
 
-    function resizeThumbnailImage($thumb_image_name, $image, $width, $height, $start_width, $start_height, $scale){ 
+    function resizeThumbnailImage($thumb, $image, $width, $height, $start_width, $start_height, $scale){ 
         $newImageWidth = ceil($width * $scale); 
         $newImageHeight = ceil($height * $scale); 
-        $newImage = imagecreatetruecolor($newImageWidth,$newImageHeight); 
+        $newImage = imagecreatetruecolor($newImageWidth,$newImageHeight);
         $ext = strtolower(substr(basename($image), strrpos(basename($image), ".") + 1)); 
         $source = ""; 
         if($ext == "png"){ 
@@ -88,17 +88,17 @@ $ext = strtolower(substr(basename($image), strrpos(basename($image), ".") + 1));
             $source = imagecreatefromgif($image); 
         } 
         imagecopyresampled($newImage,$source,0,0,$start_width,$start_height,$newImageWidth,$newImageHeight,$width,$height);
-
+		
         if($ext == "png" || $ext == "PNG"){ 
-            imagepng($newImage,$thumb_image_name,0); 
+            imagepng($newImage,$thumb,0); 
         }elseif($ext == "jpg" || $ext == "jpeg" || $ext == "JPG" || $ext == "JPEG"){ 
-            imagejpeg($newImage,$thumb_image_name,90); 
+            imagejpeg($newImage,$thumb,90); 
         }elseif($ext == "gif" || $ext == "GIF"){ 
-            imagegif($newImage,$thumb_image_name); 
+            imagegif($newImage,$thumb); 
         } 
 
-        chmod($thumb_image_name, 0777); 
-        return $thumb_image_name; 
+        chmod($thumb, 0777); 
+        return $thumb; 
     } 
 
     function cropImage($thumb_width, $x1, $y1, $x2, $y2, $w, $h, $thumbLocation, $imageLocation){

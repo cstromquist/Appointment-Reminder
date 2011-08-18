@@ -17,7 +17,7 @@
 <?php foreach($technicians as $tech): ?>
 			<div class="technician_column">
 				<div class="photo">
-				<?php if($tech['Technician']['image_path'] != "") { echo $html->image('uploads/technicians/'.$tech['Technician']['image_path'], array('width' => '75')); } ?>
+				<?php if($tech['Technician']['image_path'] != "") { echo $html->image('uploads/technicians/'.$tech['Technician']['image_path'] .'?' . time(), array('width' => '75')); } ?>
 				</div>
 				<div class="info">
 					<h4><?php echo $tech['Technician']['name'] ?></h4>

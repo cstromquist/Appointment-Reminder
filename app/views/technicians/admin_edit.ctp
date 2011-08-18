@@ -19,7 +19,7 @@
 	<div class="tech_photo">
 	<?php	
 		if(isset($this->data['Technician']['image_path']) && $this->data['Technician']['image_path']) {
-			echo $html->image('uploads/technicians/'.$this->data['Technician']['image_path'], array('width' => 75));
+			echo $html->image('uploads/technicians/'.$this->data['Technician']['image_path'] .'?' . time(), array('width' => 75));
 		} else {
 			echo $html->image('avatar.png');
 		}
@@ -37,7 +37,7 @@
 	<div class="tech_info">
 		<?php
 	    echo 
-	    $form->create('Technician', array('action' => 'admin_edit', 'class' => 'editor_form', 'type' => 'file')),
+	    $form->create('Technician', array('action' => 'admin_edit', 'class' => 'editor_form', 'type' => 'file', 'name' => 'tech_form')),
 	    $form->hidden('company_id'),
 	    $form->input('name', array('between' => '', 'label' => 'Technician name')),
 	    $form->input('bio', array('between' => '', 'label' => 'Technician Bio', 'type' => 'text', 'rows' => 10, 'cols' => 60)),

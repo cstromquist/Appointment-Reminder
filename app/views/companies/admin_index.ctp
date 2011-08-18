@@ -20,11 +20,11 @@
 			<div class="technician_column">
 				<div class="photo">
 				<?php	
-					if($company['Company']['logo_path']) {
-						echo $html->image('uploads/companies/logos/small/'.$company['Company']['logo_path']);
-					} else {
+					//if($company['Company']['logo_path']) {
+					//	echo $html->image('uploads/companies/logos/small/'.$company['Company']['logo_path']);
+					//} else {
 						echo $html->image('company.png');
-					}
+					//}
 				?>
 				</div>
 				<div class="info">

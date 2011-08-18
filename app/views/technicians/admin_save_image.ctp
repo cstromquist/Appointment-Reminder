@@ -1,8 +1,9 @@
 <!-- THIS ISN'T WORKING IN IE..WHAT A SURPRISE!!..SO JUST RELOADING PARENT AND CLOSING WINDOW FOR NOW.. -->
-<!--h2 class="section">Success! Your final image is below.</h2-->
+<h2 class="section">Success!</h2>
+<p>Saving and closing window...</p>
 <script type="text/javascript">
 	//function closeMe() {
-		parent.location.reload();
+		window.parent.document.forms[0].submit();
 		window.close();
 	//}
 </script>
