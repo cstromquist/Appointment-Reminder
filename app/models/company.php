@@ -7,18 +7,6 @@ class Company extends AppModel {
 	       'allowEmpty' => false, 
 	       'required' => true,
 	       'message' => 'Please enter your company name.'
-	    ),
-	    'phone' => array(
-	       'rule' => 'notEmpty', 
-	       'allowEmpty' => false, 
-	       'required' => true,
-	       'message' => 'Please enter your company phone.'
-	    ),
-	    'website_url' => array(
-	       'rule' => 'notEmpty', 
-	       'allowEmpty' => false, 
-	       'required' => true,
-	       'message' => 'Please enter your company website.'
 	    )
 	);
 		

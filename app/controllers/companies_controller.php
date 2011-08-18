@@ -108,7 +108,12 @@ class CompaniesController extends AppController {
      *
      */
     function admin_create() {
-        $this->redirect(array('action' => 'edit', $this->Company->id));
+    	if(!empty($this->data)) {
+			$this->Company->create($this->data);
+			if ($this->Company->save($this->data)) {
+				return $this->redirect(array('action' => 'edit', $this->Company->id));
+			}
+		}
     }
 	
 	/* 

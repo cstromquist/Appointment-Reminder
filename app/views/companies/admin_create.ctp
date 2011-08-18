@@ -1,4 +1,4 @@
-<h2 class="section">Create Technician</h2>
+<h2 class="section">Create Company</h2>
 <?php 
 
     if ($session->check('Message.flash')) {
@@ -8,13 +8,12 @@
 <div id="technician_details">
 		<?php
 	    echo 
-	    $form->create('Technician', array('action' => 'admin_create', 'class' => 'editor_form')),
-	    $form->hidden('company_id'),
-	    $form->input('name', array('between' => '', 'label' => 'Technician name', 'div' => array('class' => 'title_input'))),
+	    $form->create('Company', array('action' => 'admin_create', 'class' => 'editor_form')),
+	    $form->input('name', array('between' => '', 'label' => 'Company name', 'div' => array('class' => 'title_input'))),
 	    $form->hidden('id');
 		$options = array(
-    	'label' => 'Create this technician',
-    	'name' => 'Create this technician',
+    	'label' => 'Create this company',
+    	'name' => 'Create this company',
     	'div' => array(
         	'class' => 'wf-form-button',
     		)
