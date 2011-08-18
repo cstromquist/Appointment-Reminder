@@ -72,13 +72,11 @@ class TechniciansController extends AppController {
 	}
 
 	function admin_create() {
-		print_r($this->data);
 		if(!empty($this->data)) {
 			$this->data['Technician']['company_id'] = $this->Auth->user('company_id');
-			if($this->Technician->create($this->data)) {
-				if ($this->Technician->save($this->data)) {
-					return $this->redirect(array('action' => 'edit', $this->Technician->id));
-	        	}
+			$this->Technician->create($this->data);
+			if ($this->Technician->save($this->data)) {
+				return $this->redirect(array('action' => 'edit', $this->Technician->id));
 			}
 		}
 	}

@@ -8,6 +8,9 @@ class Technician extends AppModel {
 	       'required' => true,
 	       'message' => 'Technician name is required.'
 	    ),
+	    /* 
+		 * Can't make bio required since we only take the name when we initially create the technician.
+		 * 
 	    'bio' => array(
 	       'rule' => 'notEmpty', 
 	       'allowEmpty' => false, 
@@ -15,6 +18,7 @@ class Technician extends AppModel {
 	       'on' => 'create',
 	       'message' => 'Technician bio is required.'
 	    ),
+		 */
 		'technician_file_size' => array(
 			'rule' => array('maxLength', 6),
 			'message' => 'Image size is waaayyy too big. Try resizing first'

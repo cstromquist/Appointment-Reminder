@@ -18,7 +18,7 @@
 <div id="technician_details">
 	<div class="tech_photo">
 	<?php	
-		if(isset($this->data['Technician']['image_path'])) {
+		if(isset($this->data['Technician']['image_path']) && $this->data['Technician']['image_path']) {
 			echo $html->image('uploads/technicians/'.$this->data['Technician']['image_path'], array('width' => 75));
 		} else {
 			echo $html->image('avatar.png');
