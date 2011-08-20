@@ -62,5 +62,25 @@ class Dashboard extends AppModel {
             }
         }
     }
+	
+	/**
+     * Search title and content fields
+     *
+     * @param string $query
+     * @return array
+     */
+    function search($query) {
+    	$fields = array('id', 'name');
+		
+    	$results = $this->find(
+			'all',
+			array(
+				'conditions' => "{$this->name}.name LIKE '%$query%'",
+				'fields' => $fields
+			)
+		);
+    	
+    	return $results;
+    }
     
 }

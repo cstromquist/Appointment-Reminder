@@ -67,10 +67,17 @@ class Reminder extends AppModel {
     function search($query) {
     	$fields = array('id', 'fname', 'lname', 'email');
 		
+		// check for first/last name and search by ONLY last name
+		$array = explode(' ', $query);
+		if(count($array) > 1)
+			$find = $array[1];
+		else
+			$find = $query;
+		
     	$results = $this->find(
 			'all',
 			array(
-				'conditions' => "{$this->name}.lname LIKE '%$query%' OR {$this->name}.fname LIKE '%$query%'",
+				'conditions' => "{$this->name}.lname LIKE '%$find%' OR {$this->name}.fname LIKE '%$find%'",
 				'fields' => $fields
 			)
 		);

@@ -4,6 +4,7 @@ class DashboardsController extends AppController {
 	public $helpers = array('List', 'Time', 'Text');
 	public $pageTitle = 'Dashboard';
 	public $components = array('Auth', 'Access');
+	//public $uses = array('Company', 'Technician', 'Reminder');
 	
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -27,7 +28,7 @@ class DashboardsController extends AppController {
      *
      * @param string $query Search term, encoded by Javascript's encodeURI()
      */
-    function admin_search($query = '') {
+    function admin_search2($query = '') {
         $query = urldecode($query);
         $companyResults = ClassRegistry::init('Company')->search($query);
         $results = am($companyResults);
@@ -41,21 +42,28 @@ class DashboardsController extends AppController {
      * Public search @TODO
      *
      */
-    function search() {
-		$query = Sanitize::escape($_GET['q']);
-        $postResults = $this->Post->search($query);
-        $pageResults = $this->Page->search($query);
-        if (!is_array($postResults)) {
-        	$postResults = array();
+    function admin_search($query = '') {
+		$query = urldecode($query);
+		$Technician =& ClassRegistry::init('Technician');
+        $techResults = $Technician->search($query);
+		$Company =& ClassRegistry::init('Company');
+        $companyResults = $Company->search($query);
+		$Reminder =& ClassRegistry::init('Reminder');
+        $reminderResults = $Reminder->search($query);
+        if (!is_array($techResults)) {
+        	$techResults = array();
         }
-        if (!is_array($pageResults)) {
-        	$pageResults = array();
+        if (!is_array($companyResults)) {
+        	$companyResults = array();
         }
-        $results = array_merge($postResults, $pageResults);
+		if (!is_array($reminderResults)) {
+        	$reminderResults = array();
+        }
+        $results = array_merge($techResults, $companyResults, $reminderResults);
         $this->set('results', $results);
 
         if ($this->RequestHandler->isAjax()) {
-            $this->render('/elements/search_results');
+            $this->render('../dashboards/wf_search');
         }
     }
 	

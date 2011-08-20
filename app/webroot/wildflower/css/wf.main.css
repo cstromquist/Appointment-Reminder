@@ -626,6 +626,9 @@ select {
         color: #fff;
         text-decoration: none;
     }
+    #sidebar-search-results a:hover {
+    	background: #092439;
+    }
     
 /* Select actions */
 

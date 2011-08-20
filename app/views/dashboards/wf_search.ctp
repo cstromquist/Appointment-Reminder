@@ -2,8 +2,26 @@
 <ul id="sidebar-search-results">
 <?php
 	foreach ($results as $item) {
-		$url = array('controller' => 'companies', 'action' => 'admin_edit', $item['Company']['id']);
-		echo '<li>' . $html->link($item['Company']['name'], $url) . '</li>';
+		$model = $controller = '';
+		if (isset($item['Technician']) && isset($item['Technician']['name'])) {
+			$model = 'Technician';
+			$controller = 'techicians';
+			$action = 'admin_edit';
+		} else if (isset($item['Company']) && isset($item['Company']['name'])) {
+			$model = 'Company';
+			$controller = 'companies';
+			$action = 'admin_edit';
+		} else if (isset($item['Reminder']) && isset($item['Reminder']['fname'])) {
+			$model = 'Reminder';
+			$controller = 'reminders';
+			$item['Reminder']['name'] = $item['Reminder']['fname'] . " " . $item['Reminder']['lname'];
+			$action = 'admin_email_details';
+		} else {
+			continue;
+		}
+		
+		$url = array('controller' => $controller, 'action' => $action, $item[$model]['id']);
+		echo '<li>' . $html->link($item[$model]['name'] . ' - ' . $model, $url) . '</li>';
 	}
 ?>
 </ul>
