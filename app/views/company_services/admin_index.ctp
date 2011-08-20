@@ -11,7 +11,7 @@
 <?php echo $this->element('admin_select_actions'); ?>
 
 <ul class="list">
-    <?php foreach ($company_services as $company_service): ?>
+    <?php foreach ($companyservices as $company_service): ?>
         <li class="post-row actions-handle">
             <span class="row-check"><?php echo $form->checkbox('id.' . $company_service['CompanyService']['id']) ?></span>
             <span class="title-row"><?php echo $html->link($company_service['CompanyService']['name'], array('action' => 'edit', $company_service['CompanyService']['id']), array('title' => __('Edit this Service.', true))) ?></span>
@@ -26,3 +26,12 @@
 	//$this->element('admin_pagination'),
     $form->end();
 ?>
+
+<?php $partialLayout->blockStart('sidebar'); ?>
+    <li>
+        <?php echo $html->link(
+            '<span>' . __('Add a new service', true) . '</span>', 
+            array('action' => 'admin_add'),
+            array('class' => 'add', 'escape' => false)) ?>
+    </li>
+<?php $partialLayout->blockEnd(); ?>

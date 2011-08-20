@@ -48,10 +48,6 @@ class RemindersController extends AppController {
 			$technician_id = $this->data['Reminder']['technician_id'];
 			$company = $this->Company->findById($this->Auth->user('company_id'));
 			if($id == null) {
-				$this->data['Reminder']['service_message'] = $company['Company']['service_message'];
-				$this->data['Reminder']['features_benefits'] = $company['Company']['features_benefits'];
-				$this->data['Reminder']['services'] = $company['Company']['services'];
-				$this->data['Reminder']['other_services'] = $company['Company']['other_services'];
 				$this->data['Reminder']['from_time'] = "07:00:00";
 				$this->data['Reminder']['to_time'] = "17:00:00";
 				$this->data['Reminder']['service_date'] = date('Y-m-d', time());
@@ -70,10 +66,19 @@ class RemindersController extends AppController {
 		}
 		$theme = $this->data['Reminder']['theme'];
 		$technician = $this->Technician->findById($this->data['Reminder']['technician_id']);
-		$Service =& ClassRegistry::init('Service'); 
-		$servicelist = $Service->find('list', array('fields' => array('Service.id', 'Service.name'), 'order' => array('Service.name' => 'asc')));
-		$services = $Service->find('all',array('order' => array('Service.name' => 'asc')));
-		$this->set(compact('theme', 'technician', 'servicelist', 'services'));
+		$CompanyService =& ClassRegistry::init('CompanyService'); 
+		$companyserviceslist = $CompanyService->find('list', array(
+															'conditions' => array('CompanyService.company_id' => $this->Auth->user('company_id')),
+															'fields' => array('CompanyService.id', 'CompanyService.name'), 
+															'order' => array('CompanyService.name' => 'asc')
+															)
+													);
+		$companyservices = $CompanyService->find('all',array(
+															'conditions' => array('CompanyService.company_id' => $this->Auth->user('company_id')),
+															'order' => array('CompanyService.name' => 'asc') 
+															)
+												);
+		$this->set(compact('theme', 'technician', 'companyserviceslist', 'companyservices'));
 	}
 	
 	function admin_select_theme($theme = null, $id = null) {

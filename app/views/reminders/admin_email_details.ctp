@@ -5,11 +5,11 @@
 	var services = new Array;
 	var other_services = new Array;
 	<?php $i = 0; ?>
-	<?php foreach($services as $service): ?>
-	service_message[<?php echo $i ?>] = "<?php echo $service['Industry']['service_message'] ?>";
-	fb[<?php echo $i ?>] = "<?php echo str_replace(array('"',"'", "\r", "\n", "\0"), array('\"','\\\'','\r', '\n', '\0'), $service['Industry']['features_benefits']) ?>";
-	services[<?php echo $i ?>] = "<?php echo str_replace(array('"',"'", "\r", "\n", "\0"), array('\"','\\\'','\r', '\n', '\0'), $service['Industry']['services']) ?>";
-	other_services[<?php echo $i ?>] = "<?php echo str_replace(array('"',"'", "\r", "\n", "\0"), array('\"','\\\'','\r', '\n', '\0'), $service['Industry']['other_services']) ?>";
+	<?php foreach($companyservices as $service): ?>
+	service_message[<?php echo $i ?>] = "<?php echo $service['Service']['service_message'] ?>";
+	fb[<?php echo $i ?>] = "<?php echo str_replace(array('"',"'", "\r", "\n", "\0"), array('\"','\\\'','\r', '\n', '\0'), $service['Service']['features_benefits']) ?>";
+	services[<?php echo $i ?>] = "<?php echo str_replace(array('"',"'", "\r", "\n", "\0"), array('\"','\\\'','\r', '\n', '\0'), $service['Service']['services']) ?>";
+	other_services[<?php echo $i ?>] = "<?php echo str_replace(array('"',"'", "\r", "\n", "\0"), array('\"','\\\'','\r', '\n', '\0'), $service['Service']['other_services']) ?>";
 	<?php $i++; ?>
 	<?php endforeach; ?>
 	function changeService(e) {
@@ -21,6 +21,7 @@
 		}
 	}
 </script>
+
 <?php 
     if ($session->check('Message.flash')) {
         $session->flash();
@@ -101,7 +102,7 @@
 		?>
 		<div class="input text">
 			<label for="ReminderService">Service Type</label>
-			<?php echo $form->select('service', $servicelist, $selected=null, array("onchange"=>"changeService(this)"), 'Select a service type'); ?>
+			<?php echo $form->select('service', $companyserviceslist, $selected=null, array("onchange"=>"changeService(this)"), 'Select a service type'); ?>
 		</div>
 		<?php
 		echo

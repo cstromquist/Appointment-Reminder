@@ -60,7 +60,6 @@
  
 <div id="header">
     <h1 id="site_title"><?php echo hsc($siteName); ?></h1>
-    <?php echo $html->link('Site index', '/', array('title' => __('Visit ', true)  . FULL_BASE_URL, 'id' => 'site_index')); ?>
     
     <div id="login_info">
         <?php echo $htmla->link(__('Logout', true), array('plugin' => null, $prefix => true, 'controller' => 'users', 'action' => 'logout'), array('id' => 'logout')); ?>
