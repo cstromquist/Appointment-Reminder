@@ -6,6 +6,11 @@ class CompanyService extends AppModel
 	);
 
 	public $validate = array(
+		'name' => array(
+        	'rule' => 'notEmpty',
+        	'allowEmpty' => false,
+        	'required' => true
+        ),
 		'service_message' => array(
         	'rule' => 'notEmpty',
         	'allowEmpty' => false,

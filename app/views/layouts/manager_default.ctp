@@ -71,6 +71,7 @@
         <li><?php echo $htmla->link(__('Appointment Reminders', true), array('plugin' => null, $prefix => true, 'controller' => 'reminders', 'action' => 'index')); ?></li>
         <li class="nav_item_on_right"><?php echo $htmla->link(__('Users', true), array('plugin' => null, $prefix => true, 'controller' => 'users', 'action' => 'index')); ?></li>
         <li class="nav_item_on_right"><?php echo $htmla->link(__('Company Settings', true), array('plugin' => null, $prefix => true, 'controller' => 'companies', 'action' => 'edit')); ?></li>
+        <li class="nav_item_on_right"><?php echo $htmla->link(__('Service Settings', true), array('plugin' => null, $prefix => true, 'controller' => 'company_services', 'action' => 'index')); ?></li>
     </ul>
 </div>
 

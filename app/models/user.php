@@ -42,7 +42,7 @@ class User extends AppModel {
             ),
             'confirmPassword' => array(
                 'rule' => array('confirmPassword'),
-                'message' => 'Please enter the same value for both password fields'
+                'message' => 'Please enter the same value for both password fields.'
             )
         ),
 		'email' => array(
@@ -66,6 +66,14 @@ class User extends AppModel {
 	    } else {
 	        return array('Group' => array('id' => $groupId));
 	    }
+	}
+	
+	function beforeValidate() {
+		App::import('Core', 'Security'); // not sure whether this is necessary
+    	if ($this->data['User']['password'] == Security::hash('', null, true)) {
+        	$this->data['User']['password'] = '';
+    	}
+    	return true;
 	}
 	
     /**

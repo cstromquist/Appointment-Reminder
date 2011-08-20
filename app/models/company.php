@@ -23,7 +23,10 @@ class Company extends AppModel {
 	   		'className' => 'Reminder',
 			'order' => 'Reminder.created ASC'
 	   	),
-	   	'CompanyService'
+	   	'CompanyService' => array(
+	   		'className' => 'CompanyService',
+			'order' => 'CompanyService.created ASC'
+	   	)
 	);
 		
 	var $name = 'Company';

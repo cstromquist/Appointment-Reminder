@@ -14,11 +14,7 @@
     $form->input('name', array('between' => '', 'label' => 'Company name')),
     $form->input('phone', array('between' => '', 'label' => 'Company phone')),
     $form->input('website_url', array('between' => '', 'label' => 'Company website')),
-    $form->input('payment_methods', array('multiple' => 'checkbox', 'type' => 'select', 'label' => 'Company payment method', 'options' => $options, 'selected' => $selected)),
-    $form->input('service_message', array('between' => '', 'type' => 'textarea', 'rows' => 10, 'cols' => 60, 'label' => 'Default Service Message')),
-    $form->input('features_benefits', array('between' => '', 'type' => 'textarea', 'rows' => 10, 'cols' => 60, 'label' => 'Default Features & Benefits')),
-    $form->input('services', array('between' => '', 'type' => 'textarea', 'rows' => 10, 'cols' => 60, 'label' => 'Default Company services')),
-    $form->input('other_services', array('between' => '', 'type' => 'textarea', 'rows' => 10, 'cols' => 60, 'label' => 'Default Other services'));
+    $form->input('payment_methods', array('multiple' => 'checkbox', 'type' => 'select', 'label' => 'Company payment method', 'options' => $options, 'selected' => $selected));
     if($isAdmin) {
     	echo 
     	$form->input('status', array('label' => 'Company status')),

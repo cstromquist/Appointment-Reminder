@@ -184,6 +184,8 @@ class CompaniesController extends AppController {
 			$Reminder->deleteAll(array('Reminder.company_id' => $id));
 			$User =& ClassRegistry::init('User'); 
 			$User->deleteAll(array('User.company_id' => $id));
+			$CompanyService =& ClassRegistry::init('CompanyService');
+			$CompanyService->deleteAll(array('CompanyService.company_id' => $id));
 			$this->Company->delete($id);
 			$this->Session->setFlash('Company successfully deleted!', 'default', array('class' => 'flash-success'));
 			$this->redirect('index');
@@ -201,15 +203,35 @@ class CompaniesController extends AppController {
 		$services = $Service->find('list', array('fields' => array('Service.id', 'Service.name')));
 		$this->set(compact('services'));
 		if (!empty($this->data)) {
+			if(!is_array($this->data['Company']['company_services'])) {
+				$this->Session->setFlash('Please select at least one service.', 'default', array('class' => 'flash-error'));
+				return;
+			}
 			$this->data['Company']['status'] = 0;
 			$this->data['Company']['activation_id'] = $this->Company->create_unique_id();
 			$this->data['User'][0]['group_id'] = Group::$ManagerId;
 			unset($this->Company->User->validate['company_id']);
 			$password = $this->data['User'][0]['password']; 
 			$this->data['User'][0]['password'] = $this->Auth->password($this->data['User'][0]['password']);
-			//debug($this->data);
 			if($this->Company->saveAll($this->data, array('validate'=>'first'))) {
 				$this->send_activation_email($this->data['Company'], $this->data['User'][0]);
+				
+				$CompanyService =& ClassRegistry::init('CompanyService');
+				// at this point loop through the services and add them to the CompanyServices
+				foreach($this->data['Company']['company_services'] as $key => $val) {
+					$service = $Service->findById($val);
+					$company_service['service_id'] = $val;
+					$company_service['company_id'] = $this->Company->id;
+					$company_service['name'] = $service['Service']['name'];
+					$company_service['service_message'] = $service['Service']['service_message'];
+					$company_service['features_benefits'] = $service['Service']['features_benefits'];
+					$company_service['services'] = $service['Service']['services'];
+					$company_service['other_services'] = $service['Service']['other_services'];
+					$CompanyService->create();
+					$CompanyService->set($company_service);
+					$CompanyService->save();
+				}
+				
 				$this->redirect('register_success');
 			} else {
 				$this->data['User'][0]['password'] = $password;
@@ -253,13 +275,7 @@ class CompaniesController extends AppController {
 		} else {
 			$company = $this->Company->find('first', array('conditions' => array('activation_id' => $id)));
 			if($company) {
-				$serviceObject =& ClassRegistry::init('Service'); 
-				$service = $serviceObject->findById($company['Company']['service_id']);
 				$company['Company']['status'] = 1;
-				$company['Company']['service_message'] = $service['Service']['service_message'];
-				$company['Company']['features_benefits'] = $service['Service']['features_benefits'];
-				$company['Company']['services'] = $service['Service']['services'];
-				$company['Company']['other_services'] = $service['Service']['other_services'];
 				$this->Company->save($company);
 				$message = "Your company has been activated!";
 				$flag = true;

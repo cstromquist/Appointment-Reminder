@@ -10,7 +10,10 @@ class Service extends AppModel {
 	);
 		
 	public $hasMany = array(
-	   'CompanyService'
+	   	'CompanyService' => array(
+	   		'className' => 'CompanyService',
+			'order' => 'CompanyService.created ASC'
+	   	)
 	);
 		
 	var $name = 'Service';

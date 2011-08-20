@@ -64,8 +64,8 @@ class AppController extends Controller {
         
         // Admin area requires authentification
 		if ($this->isAdminAction()) {
-			//first check company status
-			if($this->action != 'admin_error') {
+			// bad code. refactor when Auth is figured out.
+			if($this->action != 'admin_error' && $_SERVER['REQUEST_URI'] != '/admin' && $_SERVER['REQUEST_URI'] != '/admin/') {
 				$this->Access->startup();
 				if(!$this->Access->checkCompanyStatus()) {
 					$this->redirect(array('controller' => 'faults', 'action' => 'error', 'activation'));
