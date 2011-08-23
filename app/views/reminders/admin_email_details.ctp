@@ -19,6 +19,10 @@
 			$('#services').val(services[e.selectedIndex - 1]);
 			$('#other_services').val(other_services[e.selectedIndex - 1]);
 		}
+		limitChars('service_message', 81, 'smlimitinfo');
+		limitLines('features_benefits', 8, 'fblimitinfo');
+		limitLines('services', 9, 'slimitinfo');
+		limitLines('other_services', 8, 'oslimitinfo');
 	}
 	
 </script>
