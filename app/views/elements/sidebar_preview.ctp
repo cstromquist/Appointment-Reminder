@@ -6,7 +6,7 @@
 		if($this->data['Reminder']['id']) {
 			$url .= '/' . $this->data['Reminder']['id'];
 		}
-        echo $html->link('Change theme', $url, array('escape' => false)); 
+        echo $html->link('Start over with a new theme', $url, array('escape' => false)); 
 		?>
 	</div>
 	<?php if(isset($technician) && $technician):?>
@@ -22,7 +22,7 @@
 		if($this->data['Reminder']['id']) {
 			$url .= '/' . $this->data['Reminder']['id'];
 		}
-        echo $html->link('Change technician', $url, array('escape' => false)); 
+        echo $html->link('Start over with a new technician', $url, array('escape' => false)); 
 		?>
 	</div>
 	<?php else: ?>

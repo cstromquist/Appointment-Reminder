@@ -43,7 +43,7 @@ class CropimageHelper extends Helper {
 
             $(window).load(function () { 
                 $('#thumbnail').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview });
-                $('#thumbnail').imgAreaSelect({ x1: 120, y1: 90, x2: 280, y2: 210 }); 
+                $('#thumbnail').imgAreaSelect({ x1: 40, y1: 30, x2: 190, y2: 180 }); 
             }); 
             </script>"); 
     } 

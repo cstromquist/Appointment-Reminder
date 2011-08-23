@@ -18,9 +18,6 @@ define('BULLET',utf8_encode('&#8226;'));
 define('CANVAS_WIDTH',600);
 define('CANVAS_HEIGHT',960);
 
-define('LOGO_WIDTH',175);
-define('LOGO_HEIGHT',70);
-
 define('UPSELL_LIST_COLS', 1);
 
 function imagettfmultilinetext($image, $size, $angle, $x, $y, $color, $fontfile,  $text, $spacing=1)
@@ -295,39 +292,51 @@ function generateImage(){
 	imagedestroy($nl);
 
 	//add company logo
-	
 	if(REVERSE_LOGO){
 		$logoPath = substr($this->logoPath,0,-4).'_rev.png';
 	}else{
 		$logoPath = $this->logoPath;
 	}
 	
-	$lb = imagecreatefromjpeg($logoPath);
-	imagecopy ( $im, $lb, LOGO_BLOCK_CENTER - (LOGO_WIDTH/2), LOGO_BLOCK_Y, 0, 0, LOGO_WIDTH, LOGO_HEIGHT );
-	imagedestroy($lb);
+	// get the logo height/width
+	list($width, $height, $type, $attr) = getimagesize($logoPath);
+	
+	define('LOGO_WIDTH', $width);
+	define('LOGO_HEIGHT', $height);
 
+	// now figure out our Y axis based on the height of the logo
+	if($height < 100) {
+		$logo_block_y = LOGO_BLOCK_Y + (100 - $height);
+	} else {
+		$logo_block_y = LOGO_BLOCK_Y;
+	}
+
+	$lb = imagecreatefromjpeg($logoPath);
+	imagecopy ( $im, $lb, LOGO_BLOCK_CENTER - (LOGO_WIDTH/2), $logo_block_y, 0, 0, LOGO_WIDTH, LOGO_HEIGHT );
+	imagedestroy($lb);
+	
 	//add items under logo
 	
 	//phone
 	$temp = imagettfbbox(18, 0, NEWS_GOTHIC_BOLD_OBL, $this->phone);
-	imagettftext($im, 18, 0, LOGO_BLOCK_CENTER - (($temp[2] - $temp[0])/2)-5, LOGO_BLOCK_Y + 95, $text_color, NEWS_GOTHIC_BOLD_OBL, $this->phone);
+	imagettftext($im, 18, 0, LOGO_BLOCK_CENTER - (($temp[2] - $temp[0])/2)-5, LOGO_BLOCK_Y + 125, $text_color, NEWS_GOTHIC_BOLD_OBL, $this->phone);
 
 	//more info
 	$temp = imagettfbbox(11, 0, MISO, $this->moreInfoMessage);
-	imagettftext($im, 11, 0, LOGO_BLOCK_CENTER - (($temp[2] - $temp[0])/2), LOGO_BLOCK_Y + 110, $text_color, MISO, $this->moreInfoMessage);
+	imagettftext($im, 11, 0, LOGO_BLOCK_CENTER - (($temp[2] - $temp[0])/2), LOGO_BLOCK_Y + 140, $text_color, MISO, $this->moreInfoMessage);
 
 	//website
 	$temp = imagettfbbox(21, 0, MISO, $this->website);
-	imagettftext($im, 21, 0, LOGO_BLOCK_CENTER - (($temp[2] - $temp[0])/2), LOGO_BLOCK_Y + 134, $text_color, MISO_BOLD, $this->website);
+	imagettftext($im, 21, 0, LOGO_BLOCK_CENTER - (($temp[2] - $temp[0])/2), LOGO_BLOCK_Y + 164, $text_color, MISO_BOLD, $this->website);
 
 	//cancel
 	$size= 10.8;
-	$cancelMessage = explode("\n",$this->makeTextBlock($this->cancelMessage, MISO_BOLD, $size, 240));
+	$cancelMessage = explode("\n",$this->makeTextBlock($this->cancelMessage, MISO_BOLD, $size, 270));
 	
 	$temp = imagettfbbox($size, 0, MISO, $cancelMessage[0]);
-	imagettftext($im, $size, 0, LOGO_BLOCK_CENTER - (($temp[2] - $temp[0])/2), LOGO_BLOCK_Y + 152, $cancel_color, MISO_BOLD, $cancelMessage[0]);
+	imagettftext($im, $size, 0, LOGO_BLOCK_CENTER - (($temp[2] - $temp[0])/2), LOGO_BLOCK_Y + 182, $cancel_color, MISO_BOLD, $cancelMessage[0]);
 	$temp = imagettfbbox($size, 0, MISO, $cancelMessage[1]);
-	imagettftext($im, $size, 0, LOGO_BLOCK_CENTER - (($temp[2] - $temp[0])/2), LOGO_BLOCK_Y + 167, $cancel_color, MISO_BOLD, $cancelMessage[1]);
+	imagettftext($im, $size, 0, LOGO_BLOCK_CENTER - (($temp[2] - $temp[0])/2), LOGO_BLOCK_Y + 197, $cancel_color, MISO_BOLD, $cancelMessage[1]);
 	
 	//add credit cards
 	
@@ -343,7 +352,7 @@ function generateImage(){
 	$pos = LOGO_BLOCK_CENTER - ($cc_width/2) + ($x * 36);
 	
 	//place card
-	imagecopy ( $im, $cc, $pos, LOGO_BLOCK_Y + 180, 0, 0, 36, 24 );
+	imagecopy ( $im, $cc, $pos, LOGO_BLOCK_Y + 210, 0, 0, 36, 24 );
 	imagedestroy($cc);
 	
 	}

@@ -382,7 +382,7 @@ select {
         font: 14px/18px Monaco, "Lucida Console", "Consolas", courier;
         padding: 5px;
         /*width: 600px;*/
-        margin-bottom: 10px;
+        /*margin-bottom: 10px;*/
     }
     
 .mceEditor {
@@ -455,12 +455,8 @@ select {
     margin: 0 0 14px 0;
 }
 
+.flash-error,
 .error-message {
-    color: #650000;
-    margin-bottom: 5px;
-}
-
-.flash-error {
 	color: #fff;
     background: #650000;
     border: 1px solid #fff;
@@ -1668,6 +1664,7 @@ select {
 	font-size: 1.2em;
 	padding-bottom: 5px;
 	display: block;
+	margin-top: 10px;
 }
 
 .input>select {
@@ -1851,4 +1848,9 @@ form#form_send {
 
 #delete-button {
 	float: right;
+}
+
+.hint {
+	color: #999;
+	font-style: italic;
 }

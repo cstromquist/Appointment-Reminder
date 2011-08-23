@@ -42,7 +42,7 @@ define('CREDIT_CARDS_X',123);
 define('CREDIT_CARDS_Y',83);
 
 //logo, more info, website, cancel message
-define('LOGO_BLOCK_Y',690);
+define('LOGO_BLOCK_Y',645);
 define('LOGO_BLOCK_CENTER',420); //items are centered around this point
 
 //lists

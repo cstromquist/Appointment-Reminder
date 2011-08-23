@@ -40,10 +40,10 @@
 	<?php endforeach; ?>
 	<li class="technician_column" id="0">
 		<div class="photo">
-		<?php echo $html->image('no-tech.png'); ?>
+		<?php echo $html->image('uploads/companies/photos/small/'.$tech['Company']['photo_path'] .'?' . time()); ?>
 		</div>
 		<div class="info">
-			<h4>NO TECH</h4>
+			<h4>COMPANY GROUP PHOTO</h4>
 			<p>Choose this option if you would like to show a group shot of your company.</p> 
 		</div>
 	</li>

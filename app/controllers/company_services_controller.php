@@ -12,6 +12,8 @@ class CompanyServicesController extends AppController
 		if(!empty($this->data)) {
     		if ($this->CompanyService->save($this->data)) {
             	return $this->redirect(array('action' => 'index'));
+        	} else {
+        		$this->Session->setFlash('Please fix the errors below.', 'default', array('class' => 'flash-error'));
         	}
 		} elseif($id) {
 			$CompanyService = $this->CompanyService->findById($id);

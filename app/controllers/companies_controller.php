@@ -133,7 +133,7 @@ class CompaniesController extends AppController {
 				$this->Image->delete_image($company['Company']['logo_path'], "uploads/companies/logos");
 			}
 				
-			$logo_path = $this->Image->upload_image_and_thumbnail($this->data['Company']['Image/logo'], 573, 380, 80, 80, "uploads/companies/logos");
+			$logo_path = $this->Image->upload_image_and_thumbnail($this->data['Company']['Image/logo'], 180, 100, 80, 80, "uploads/companies/logos");
 	    	if(isset($logo_path)) {
 	    		$this->Session->setFlash(__('Logo successfully uploaded!', true), 'default',  array('class' => 'flash-success'));
 	     		$this->Company->saveField('logo_path',$logo_path);

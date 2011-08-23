@@ -154,7 +154,7 @@ class RemindersController extends AppController {
 	 */
 	function send_email($reminder) {
 		$company = $this->Company->findById($this->Auth->user('company_id'));
-		$companyurl = $company['Company']['website'];
+		$companyurl = $company['Company']['website_url'];
 		
 		$settings = Configure::read('AppSettings');
 		
@@ -245,16 +245,19 @@ class RemindersController extends AppController {
 		$ig->setTheme($this->data['Reminder']['theme']);
 		
 		if($technician) {
+			// check for technician photo
 			if(!file_exists($_SERVER['DOCUMENT_ROOT'] . $this->base . '/app/webroot/img/uploads/technicians/' . $technician['Technician']['image_path'])) {
 				die('Tech photo does not exist. Location:' . $_SERVER['DOCUMENT_ROOT'] . $this->base . '/app/webroot/img/uploads/technicians/' . $technician['Technician']['image_path']);
 			}
 			$ig->setPhotoPath($_SERVER['DOCUMENT_ROOT'] . $this->base . '/app/webroot/img/uploads/technicians/' . $technician['Technician']['image_path']);
 		} else {
+			// check for company group photo
 			if(!file_exists($_SERVER['DOCUMENT_ROOT'] . $this->base . '/app/webroot/img/uploads/companies/photos/big/' . $company['Company']['photo_path'])) {
 				die('Company group photo does not exist');
 			}
 			$ig->setPhotoPath($_SERVER['DOCUMENT_ROOT'] . $this->base . '/app/webroot/img/uploads/companies/photos/big/' . $company['Company']['photo_path']);
 		}
+		// check for company logo
 		if(!file_exists($_SERVER['DOCUMENT_ROOT'] . $this->base . '/app/webroot/img/uploads/companies/logos/big/' . $company['Company']['logo_path'])) {
 			die('Company logo photo does not exist');
 		}

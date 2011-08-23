@@ -1,4 +1,5 @@
 <h2 class="section">Crop your image below</h2>
+<p>Click and drag a corner of the box to adjust the crop area.</p>
 <?php 
 if(isset($javascript)):  
         echo $javascript->link('jquery.imgareaselect.min.js'); 
