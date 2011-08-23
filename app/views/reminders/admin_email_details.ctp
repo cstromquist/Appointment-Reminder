@@ -14,10 +14,10 @@
 	<?php endforeach; ?>
 	function changeService(e) {
 		if(e.selectedIndex) {
-			$('#ReminderServiceMessage').val(service_message[e.selectedIndex - 1]);
-			$('#ReminderFeaturesBenefits').val(fb[e.selectedIndex - 1]);
-			$('#ReminderServices').val(services[e.selectedIndex - 1]);
-			$('#ReminderOtherServices').val(other_services[e.selectedIndex - 1]);
+			$('#service_message').val(service_message[e.selectedIndex - 1]);
+			$('#features_benefits').val(fb[e.selectedIndex - 1]);
+			$('#services').val(services[e.selectedIndex - 1]);
+			$('#other_services').val(other_services[e.selectedIndex - 1]);
 		}
 	}
 	
