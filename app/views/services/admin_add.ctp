@@ -2,7 +2,7 @@
 
 	<?php
 	    echo 
-	    $form->create('Industry', array('action' => 'create', 'class' => 'editor_form')),
+	    $form->create('Service', array('action' => 'create', 'class' => 'editor_form')),
 	    $form->input('name', array('class' => 'medium','error' => 'Please specify an industry name.')),
 	    $form->input('service_message', array('between' => '', 'label' => 'Service Message')),
 	    $form->input('features_benefits', array('type' => 'textarea', 'label' => 'You\'ve made a great decision!')),
