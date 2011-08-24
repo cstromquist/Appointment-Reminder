@@ -81,6 +81,7 @@
 		$form->input('other_services', array('type' => 'textarea', 'rows' => 10, 'cols' => 40, 'label' => 'Are there any other services you would like?')),
 		$form->hidden('theme'),
 		$form->hidden('technician_id'),
+		$form->hidden('company_service_id'),
 		$form->hidden('id'),
 		$form->end();
 	?>
@@ -102,7 +103,7 @@
 		?>
 		<div class="input text">
 			<label for="ReminderService">Service Type</label>
-			<?php echo $form->select('service', $companyserviceslist, $selected=null, array("onchange"=>"changeService(this)"), 'Select a service type'); ?>
+			<?php echo $form->select('company_service_id', $companyserviceslist, $selected=null, array("onchange"=>"changeService(this)"), 'Select a service type'); ?>
 		</div>
 		<?php
 		$options = array(

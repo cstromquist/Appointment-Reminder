@@ -9,6 +9,7 @@
     echo 
     $form->create('Company', array('action' => 'admin_update', 'class' => 'editor_form')),
     $form->input('name', array('between' => '', 'label' => 'Company name')),
+    $form->input('email', array('between' => '', 'label' => 'Company email')),
     $form->input('phone', array('between' => '', 'label' => 'Company phone')),
     $form->input('website_url', array('between' => '', 'label' => 'Company website')),
     $form->input('payment_methods', array('multiple' => 'checkbox', 'type' => 'select', 'label' => 'Company payment method', 'options' => $options, 'selected' => $selected));
@@ -53,14 +54,16 @@
     <div class="company_photo">
 	<?php	
 		if($this->data['Company']['photo_path']) {
-			echo $html->image('uploads/companies/photos/big/'.$this->data['Company']['photo_path'], array('width' => 250));
+			echo $html->image('uploads/companies/photos/'.$this->data['Company']['photo_path'], array('width' => 250));
 		} else {
 			echo $html->image('company.png');
 		}
 	?>
 	<br />
-	<?php	
-		echo $html->link(__('Change Company Photo', true), array('action' => 'change_photo', $this->data['Company']['id'])); 
+	<?php
+	$thickbox->setProperties(array('id'=>'domId','type'=>'iframe','iframeUrl'=>'/admin/companies/upload_photo/'.$this->data['Company']['id'], 'title' => 'Change Company Photo'));
+	$thickbox->setPreviewContent('Change Company Photo');
+	echo $thickbox->output();
 	?>
 	</div>
 <?php $partialLayout->blockEnd(); ?>

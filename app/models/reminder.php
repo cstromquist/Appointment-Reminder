@@ -8,6 +8,10 @@
  */
 class Reminder extends AppModel {
 	
+	public $belongsTo = array(
+		'Technician', 'Company', 'CompanyService'
+	);
+	
 	public $validate = array(
         'fname' => array(
             'rule' => 'notEmpty',

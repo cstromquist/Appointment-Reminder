@@ -7,7 +7,16 @@
 			window.location = "<?php echo $this->base ?>/admin/technicians/delete/<?php echo $this->data['Technician']['id'] ?>"; 
 		}
 	}
-//-->
+	$(function(){
+	 	$('#bio').keyup(function(){
+	 		limitChars('bio', 270, 'biolimitinfo');
+	 	})
+	});
+	
+	$(document).ready(function(){
+	 	limitChars('bio', 270, 'biolimitinfo');
+	});
+	//-->
 </script>
 <?php 
 
@@ -38,10 +47,18 @@
 		<?php
 	    echo 
 	    $form->create('Technician', array('action' => 'admin_edit', 'class' => 'editor_form', 'type' => 'file', 'name' => 'tech_form')),
+	    $form->hidden('id'),
+	    $form->hidden('image_path'),
 	    $form->hidden('company_id'),
-	    $form->input('name', array('between' => '', 'label' => 'Technician name')),
-	    $form->input('bio', array('between' => '', 'label' => 'Technician Bio', 'type' => 'text', 'rows' => 10, 'cols' => 60)),
-	    $form->hidden('id'); 
+	    $form->input('name', array('between' => '', 'label' => 'Technician name'));
+	    $options = array(
+							'type' => 'textarea', 
+							'rows' => 10, 
+							'cols' => 60, 
+							'label' => 'Technician Bio', 
+							'id' => 'bio',
+							'after' => "<div id=\"biolimitinfo\" class=\"hint\">You have 270 characters remaining. </div>");
+		echo $form->input('bio', $options);
 		$options = array(
     	'label' => 'Save',
     	'name' => 'Save',

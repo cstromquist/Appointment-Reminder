@@ -27,9 +27,9 @@
 	</div>
 	<?php else: ?>
 	<div class="sidebar_tech">
-		<div class="sidebar_tech_photo"><?php echo $html->image('no-tech.png'); ?></div>
+		<div class="sidebar_tech_photo"><?php echo $html->image('uploads/companies/photos/'.$company['Company']['photo_path'], array('width' => 150)); ?></div>
 		<div class="sidebar_tech_info">
-			<p class="tech_name">No technician chosen</p>
+			<p class="tech_name">Company group photo</p>
 			<?php
 		$url = '/' . Configure::read('Routing.admin') . '/reminders/select_technician/' . $theme;
 		if($this->data['Reminder']['id']) {

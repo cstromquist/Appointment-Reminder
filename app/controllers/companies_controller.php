@@ -1,7 +1,8 @@
 <?php
 class CompaniesController extends AppController {
     var $name = 'Companies';
-	var $components = array('Image','RequestHandler','Access','Email','Auth');
+	var $components = array('Image','RequestHandler','Access','Email','Auth','JqImgcrop');
+	var $helpers = array('Thickbox','Cropimage');
 	
 	function beforeFilter() {
         parent::BeforeFilter();
@@ -146,36 +147,6 @@ class CompaniesController extends AppController {
 		}
 	}
 
-	/* 
-	 * Change the company photo
-     * 
-     * @param int $id Company ID
-     */
-	function admin_change_photo($id) {
-		if(!empty($this->data)) {
-			if(!$this->data['Company']['Image/photo']['name']) {
-				$this->Session->setFlash(__('Please choose an image to upload.', true), 'default',  array('class' => 'flash-error'));
-				$this->redirect(array('action' => 'edit/', $id));
-			}
-			// first delete the old image
-			$company = $this->Company->findById($id);
-			if($company['Company']['photo_path'] != '') {
-				$this->Image->delete_image($company['Company']['photo_path'], "uploads/companies/photos");
-			}
-				
-			$logo_path = $this->Image->upload_image_and_thumbnail($this->data['Company']['Image/photo'], 573, 380, 80, 80, "uploads/companies/photos");
-	    	if(isset($logo_path)) {
-	     		$this->Session->setFlash(__('Photo successfully uploaded!', true), 'default',  array('class' => 'flash-success'));	
-	     		$this->Company->saveField('photo_path',$logo_path);
-	    	}
-	    	else {
-	     		$this->Session->setFlash(__('Your company photo could not be saved. Please, try again.', true), 'default', array('class' => 'flash-error'));
-	    	}
-	
-			$this->redirect(array('action' => 'edit/', $id));
-		}
-	}
-	
 	function admin_delete($id) {
 		if(!empty($this->data)) {
 			$Technician =& ClassRegistry::init('Technician'); 
@@ -285,5 +256,60 @@ class CompaniesController extends AppController {
 			}
 		}
 		$this->set(compact('message', 'flag'));
+	}
+	
+	/*
+	 * Crop Photo functions
+	 */
+	function admin_upload_photo($id = null) {
+		$this->layout = 'admin_modal';
+		$this->data['Company']['id'] = $id;
+	}
+	
+	function admin_crop_image($id = null){
+		$this->layout = 'admin_modal';
+		if (!empty($this->data)) {
+			// check to make sure they actually uploaded something
+			if(!$this->data['Company']['image']['name']) {
+				$this->Session->setFlash('Please upload an image.', 'default', array('class' => 'flash-error'));
+				$this->redirect(array('controller' => 'companies', 'action' => 'upload_photo', $this->data['Company']['id']));
+			} else {
+				// check to make sure image is in jpeg format
+				$filetype = $this->JqImgcrop->getFileExtension($this->data['Company']['image']['name']);
+				$filetype = strtolower($filetype);
+				if (($filetype != "jpeg")  && ($filetype != "jpg")) {
+					$this->Session->setFlash('Please ensure image is jpeg or jpg format.', 'default', array('class' => 'flash-error'));
+					$this->redirect(array('controller' => 'companies', 'action' => 'upload_photo', $this->data['Company']['id']));
+				} else {
+					$uploaded = $this->JqImgcrop->uploadImage($this->data['Company']['image'], 'uploads/companies/photos', 'company_');
+					$this->set('uploaded',$uploaded);
+				}
+			} 
+		}
+	}
+
+	function admin_save_image($id =  null) {
+		$this->layout = 'admin_modal';
+		$arrayDir = explode('/', $this->data['Company']['imagePath']);
+		$image = array_pop($arrayDir);
+		$this->JqImgcrop->cropImage(
+			250, 
+			$this->data['Company']['x1'], 
+			$this->data['Company']['y1'],
+			$this->data['Company']['x2'],
+			$this->data['Company']['y2'],
+			$this->data['Company']['w'],
+			$this->data['Company']['h'],
+			$this->data['Company']['imagePath'],
+			$this->data['Company']['imagePath']);
+		$company = $this->Company->findById($this->data['Company']['id']);
+		// first delete the old image
+		if($company['Company']['photo_path'] != '') {
+			$this->JqImgcrop->deleteImage($company['Company']['photo_path'], "uploads/companies/photos");
+		}
+		$company['Company']['photo_path'] = $image;
+		$this->Company->set($company['Company']);
+		$this->Company->save();
+		$this->set(compact('company'));
 	}
 }

@@ -81,6 +81,8 @@ class AppController extends Controller {
 			else
 				$this->layout = 'admin_default';
 			
+			$this->set('username', $this->Auth->user('name'));
+			
 		} else {
 			$this->layout = 'default';
 			$this->Auth->allow('*');

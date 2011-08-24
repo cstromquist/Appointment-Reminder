@@ -12,7 +12,7 @@ class RemindersController extends AppController {
 	}
 	
 	function admin_index() {
-        $reminders = $this->Reminder->findAll(array('company_id' => $this->Auth->user('company_id')));
+        $reminders = $this->Reminder->findAll(array('Reminder.company_id' => $this->Auth->user('company_id')));
 		$this->set(compact('reminders'));
 	}
 	
@@ -78,7 +78,8 @@ class RemindersController extends AppController {
 															'order' => array('CompanyService.name' => 'asc') 
 															)
 												);
-		$this->set(compact('theme', 'technician', 'companyserviceslist', 'companyservices'));
+		$company = $this->Company->findById($this->Auth->user('company_id'));
+		$this->set(compact('theme', 'technician', 'companyserviceslist', 'companyservices', 'company'));
 	}
 	
 	function admin_select_theme($theme = null, $id = null) {
@@ -107,7 +108,8 @@ class RemindersController extends AppController {
 			$technician = $this->Technician->findById($this->data['Reminder']['technician_id']);
 		}
 		$technicians = $this->Technician->find('all', array('conditions' => array('Technician.company_id' => $this->Auth->user('company_id'))));
-		$this->set(compact('technicians', 'theme'));
+		$company = $this->Company->findById($this->Auth->user('company_id'));
+		$this->set(compact('technicians', 'theme', 'company'));
 	}
 	
 	/**
@@ -153,15 +155,17 @@ class RemindersController extends AppController {
 	 * 
 	 */
 	function send_email($reminder) {
+		$reminder = $this->Reminder->findById($reminder['Reminder']['id']);
 		$company = $this->Company->findById($this->Auth->user('company_id'));
 		$companyurl = $company['Company']['website_url'];
 		
 		$settings = Configure::read('AppSettings');
 		
-		$this->Email->from    = sprintf('%s <%s>', $settings['site_name'], $settings['from_email']);
+		$this->Email->from    = sprintf('%s <%s>', $company['Company']['name'], $settings['from_email']);
 		$this->Email->to      = sprintf('%s %s <%s>', $reminder['Reminder']['fname'], $reminder['Reminder']['lname'], $reminder['Reminder']['email']);
 		$this->Email->bcc	  = array($settings['contact_email']);
-		$this->Email->subject = 'Your Appointment Reminder';
+		$this->Email->replyTo = sprintf('%s <%s>', $company['Company']['name'], $company['Company']['email']);
+		$this->Email->subject = 'Your '. $reminder['CompanyService']['name'] . ' Service Appointment Reminder';
 		$this->Email->template = 'reminder';
 		$this->Email->sendAs = 'both';
 		

@@ -40,7 +40,7 @@
 	<?php endforeach; ?>
 	<li class="technician_column" id="0">
 		<div class="photo">
-		<?php echo $html->image('uploads/companies/photos/small/'.$tech['Company']['photo_path'] .'?' . time()); ?>
+		<?php echo $html->image('uploads/companies/photos/'.$tech['Company']['photo_path'] .'?' . time()); ?>
 		</div>
 		<div class="info">
 			<h4>COMPANY GROUP PHOTO</h4>

@@ -8,17 +8,12 @@ class Technician extends AppModel {
 	       'required' => true,
 	       'message' => 'Technician name is required.'
 	    ),
-	    /* 
-		 * Can't make bio required since we only take the name when we initially create the technician.
-		 * 
 	    'bio' => array(
-	       'rule' => 'notEmpty', 
-	       'allowEmpty' => false, 
-	       'required' => true,
-	       'on' => 'create',
-	       'message' => 'Technician bio is required.'
+	       'rule' => array('checkMaxLength', 270), 
+	       'allowEmpty' => true, 
+	       'required' => false,
+	       'message' => 'Please be sure the technician bio is less than 270 characters'
 	    ),
-		 */
 		'technician_file_size' => array(
 			'rule' => array('maxLength', 6),
 			'message' => 'Image size is waaayyy too big. Try resizing first'
@@ -53,5 +48,11 @@ class Technician extends AppModel {
     	
     	return $results;
     }
+
+	function checkMaxLength($check, $limit) {
+		if(strlen($check['bio']) > $limit)
+			return false;
+		return true;
+	}
 
 }
