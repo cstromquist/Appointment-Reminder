@@ -5,7 +5,7 @@
 		$model = $controller = '';
 		if (isset($item['Technician']) && isset($item['Technician']['name'])) {
 			$model = 'Technician';
-			$controller = 'techicians';
+			$controller = 'technicians';
 			$action = 'admin_edit';
 		} else if (isset($item['Company']) && isset($item['Company']['name'])) {
 			$model = 'Company';
