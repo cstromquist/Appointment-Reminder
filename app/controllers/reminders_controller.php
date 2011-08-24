@@ -83,6 +83,7 @@ class RemindersController extends AppController {
 	}
 	
 	function admin_select_theme($theme = null, $id = null) {
+		$theme = $theme ? $theme : $this->Cookie->read('theme');
 		$this->data['Reminder']['id'] = $id;
 		$this->set(compact('theme', 'id'));
 	}
@@ -102,6 +103,7 @@ class RemindersController extends AppController {
 		} elseif($this->data['Reminder']['theme']) {
 			$theme = $this->data['Reminder']['theme'];
 		}
+		$technician_id = $technician_id ? $technician_id : $this->Cookie->read('tech_id');
 		$this->data['Reminder']['id'] = $id;
 		$this->data['Reminder']['technician_id'] = $technician_id;
 		if($technician_id) {
@@ -133,6 +135,10 @@ class RemindersController extends AppController {
 		if($this->data['Reminder']['technician_id'] == '') {
 			$this->data['Reminder']['technician_id'] = 0;
 		}
+		
+		// save cookie of last selected technician and theme
+        $this->Cookie->write('tech_id', $this->data['Reminder']['technician_id'], false, '+4 weeks');
+		$this->Cookie->write('theme', $this->data['Reminder']['theme'], false, '+4 weeks');
 		
 		// generate the image (file based)
 		$image_name = $this->generate_image($this->data, 'FILE');
