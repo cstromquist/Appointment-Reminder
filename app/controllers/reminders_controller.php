@@ -136,10 +136,6 @@ class RemindersController extends AppController {
 			$this->data['Reminder']['technician_id'] = 0;
 		}
 		
-		// save cookie of last selected technician and theme
-        $this->Cookie->write('tech_id', $this->data['Reminder']['technician_id'], false, '+4 weeks');
-		$this->Cookie->write('theme', $this->data['Reminder']['theme'], false, '+4 weeks');
-		
 		// generate the image (file based)
 		$image_name = $this->generate_image($this->data, 'FILE');
 		
@@ -151,6 +147,10 @@ class RemindersController extends AppController {
 		
 		$this->data['Reminder']['sent'] = 1;
 		$this->Reminder->save($this->data);
+
+		// save cookie of last selected technician and theme
+        $this->Cookie->write('tech_id', $this->data['Reminder']['technician_id'], false, '+4 weeks');
+		$this->Cookie->write('theme', $this->data['Reminder']['theme'], false, '+4 weeks');
 		
 		$this->Session->setFlash('Your reminder has been sent!', 'default', array('class' => 'flash-success'));
 		$this->redirect(array('action' => 'index'));
