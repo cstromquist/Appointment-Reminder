@@ -434,7 +434,7 @@ function generateImage(){
 		if(defined(UPSELL_LIST_COLS) || $this->upsellListCols == 2){
 
 		$num = sizeof($this->upsellList);
-		$leftList = round($num/2,0)-1;
+		$leftList = floor($num/2);
 		
 		$upsellListLeft=array_slice($this->upsellList,0,$leftList);
 		$upsellListRight=array_slice($this->upsellList,$leftList);
