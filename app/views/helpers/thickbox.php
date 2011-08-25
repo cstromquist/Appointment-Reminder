@@ -76,8 +76,8 @@ class ThickboxHelper extends AppHelper {
     function beforeRender()
     {
         $out = $this->Html->css('/effects/css/thickbox.css').'<script src="'.$this->Html->url('/effects/js/thickbox-compressed.js').'"></script>';
-        $view =& ClassRegistry::getObject('view');
-        $view->addScript('thickbox', $out);
+        //$view =& ClassRegistry::getObject('view');
+        //$view->addScript('thickbox', $out);
     }
  
 }

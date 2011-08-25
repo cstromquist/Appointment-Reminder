@@ -7,7 +7,7 @@ endif;
 ?>
 
 <?php  
-echo $form->create('Technician', array('action' => 'save_image?modal=true',"enctype" => "multipart/form-data"));     
+echo $form->create('Technician', array('action' => 'save_image',"enctype" => "multipart/form-data"));     
 echo $form->hidden('id'); 
 echo $cropimage->createJavaScript($uploaded['imageWidth'],$uploaded['imageHeight'],151,151); 
 echo $cropimage->createForm($uploaded["imagePath"], 151, 151); 

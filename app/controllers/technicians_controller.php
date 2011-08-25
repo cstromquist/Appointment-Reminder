@@ -38,6 +38,8 @@ class TechniciansController extends AppController {
      */
     function admin_edit($id = null) {
         if(!empty($this->data)) {
+		// prevent overwriting image.
+		unset($this->data['Technician']['image_path']);
         	if($this->Technician->save($this->data)) {
 				if (!$this->Technician->exists()) return $this->cakeError('object_not_found');
 		        $this->Session->setFlash(__('Technician saved!', true), 'default', array('class' => 'flash-success'));

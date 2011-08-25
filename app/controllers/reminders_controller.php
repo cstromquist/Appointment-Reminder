@@ -161,17 +161,17 @@ class RemindersController extends AppController {
 	 * 
 	 */
 	function send_email($reminder) {
-		$reminder = $this->Reminder->findById($reminder['Reminder']['id']);
+		$reminder_data = $this->Reminder->findById($reminder['Reminder']['id']);
 		$company = $this->Company->findById($this->Auth->user('company_id'));
 		$companyurl = $company['Company']['website_url'];
 		
 		$settings = Configure::read('AppSettings');
 		
 		$this->Email->from    = sprintf('%s <%s>', $company['Company']['name'], $settings['from_email']);
-		$this->Email->to      = sprintf('%s %s <%s>', $reminder['Reminder']['fname'], $reminder['Reminder']['lname'], $reminder['Reminder']['email']);
+		$this->Email->to      = sprintf('%s %s <%s>', $reminder_data['Reminder']['fname'], $reminder_data['Reminder']['lname'], $reminder_data['Reminder']['email']);
 		$this->Email->bcc	  = array($settings['contact_email']);
 		$this->Email->replyTo = sprintf('%s <%s>', $company['Company']['name'], $company['Company']['email']);
-		$this->Email->subject = 'Your '. $reminder['CompanyService']['name'] . ' Service Appointment Reminder';
+		$this->Email->subject = 'Your '. $reminder_data['CompanyService']['name'] . ' Service Appointment Reminder';
 		$this->Email->template = 'reminder';
 		$this->Email->sendAs = 'both';
 		
@@ -295,6 +295,7 @@ class RemindersController extends AppController {
 		$ig->setUpsellListCols(2);
 		
 		$cc_array = explode(',', $company['Company']['payment_methods']);
+		$ccs = array();
 		foreach($cc_array as $key=>$val) {
 			if(preg_match('/visa/', strtolower($val))) {
 				$ccs[] = 'visa';
@@ -311,7 +312,6 @@ class RemindersController extends AppController {
 		}
 		
 		$ig->setCreditCards($ccs);
-		
 		if($return_mode == 'FILE') {
 			$ig->setReturnMode('FILE');
 			//$ig->setFileName($reminder['Reminder']['id'] . ".jpg");
