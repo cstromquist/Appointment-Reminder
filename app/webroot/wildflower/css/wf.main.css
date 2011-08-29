@@ -46,6 +46,10 @@ hr {
     display: none;
 }
 
+#content ol li {
+	margin: 10px 0 0 20px;
+}
+
 #wrap,
 #footer,
 #header-wrap {
@@ -123,13 +127,19 @@ hr {
     }
     
     #nav a {
+    	font-size: 13px;
         display: block;
         height: 13px;
         margin: 0 3px 0 0;
         padding: 4px 9px 8px 9px;
-        background: #1f3b52;
+        background: #617287;
         color: #fff;
         text-decoration: none;
+    }
+    
+    #nav .nav_item_on_right a {
+    	font-size: 10px;
+    	background: #1f3b52;
     }
     
     #nav .current,
@@ -142,7 +152,7 @@ hr {
     #nav .current {
         color: #008720;
     }
-        
+
     #nav a:hover {
         color: #fff;
         background-color: #282828;
@@ -304,7 +314,11 @@ h2 {
             color: #000;
             text-decoration: none;
         }
-
+	.centered {
+		text-align: center;
+		font-size: 20px;
+		color: #23549E;
+	}
 #full-edit-back-link {
     margin: 2px 0;
     display: block;
@@ -1773,6 +1787,7 @@ div#company_details div.company_info {
 /* Choose Technician */
 ul#choose_tech li {
 	list-style: none;
+	cursor: pointer;
 }
 ul#choose_tech li.selected {
 	background: url(img/icon-green-checkmark.png) top right no-repeat!important;
@@ -1792,6 +1807,9 @@ div.sidebar_tech {
 }
 div.sidebar_tech_info .tech_name {
 	font-weight: bold;
+}
+ul#choose_tech li.company_group_photo {
+	clear: both;
 }
 /* Reminders list */
 

@@ -32,7 +32,7 @@ Router::connect('/c/:slug', array('controller' => 'posts', 'action' => 'category
 
 // Wildflower admin routes
 $prefix = Configure::read('Routing.admin');
-Router::connect("/$prefix", array('controller' => 'dashboards', 'action' => 'index', 'admin' => true));
+Router::connect("/$prefix", array('controller' => 'dashboards', 'action' => 'welcome', 'admin' => true));
 
 // Image thumbnails
 // @TODO shorten to '/i/*'

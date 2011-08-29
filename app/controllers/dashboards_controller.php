@@ -10,6 +10,10 @@ class DashboardsController extends AppController {
 		parent::beforeFilter();
 	}
 	
+	function admin_welcome() {
+		
+	}
+	
 	function admin_index() {
 		$company_id = $this->Auth->user('company_id');
 		if($this->Auth->user('group_id') == 4) {

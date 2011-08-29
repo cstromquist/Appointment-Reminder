@@ -1,4 +1,4 @@
-<h2 class="section">Select Your Theme</h2>
+<h2 class="section centered">Select Your Theme</h2>
 <?php 
     if ($session->check('Message.flash')) {
         $session->flash();

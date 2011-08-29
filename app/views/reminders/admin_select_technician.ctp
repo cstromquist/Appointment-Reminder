@@ -1,4 +1,4 @@
-<h2 class="section">Select your technician</h2>
+<h2 class="section centered">Select your technician</h2>
 <?php 
     if ($session->check('Message.flash')) {
         $session->flash();
@@ -26,7 +26,19 @@
 <?php echo $form->hidden('theme', array('id' => 'theme', 'value' => $theme)); ?>
 <?php echo $form->hidden('id'); ?>
 <?php echo $form->hidden('form_email_details', array('value' => false)); ?>
+<h3>Appointment Confirmation</h3>
 <ul id="choose_tech">
+	<li class="technician_column company_group_photo" id="0">
+		<div class="photo">
+		<?php echo $html->image('uploads/companies/photos/'.$company['Company']['photo_path'] .'?' . time()); ?>
+		</div>
+		<div class="info">
+			<h4>COMPANY GROUP PHOTO</h4>
+			<p>Choose this option if you would like to show a group shot of your company.</p> 
+		</div>
+	</li>
+	<div class="clear"></div>
+	<h3>Technician Notification</h3>
 	<?php foreach($technicians as $tech): ?>
 	<li class="technician_column" id="<?= $tech['Technician']['id'] ?>">
 		<div class="photo">
@@ -38,15 +50,6 @@
 		</div>
 	</li>
 	<?php endforeach; ?>
-	<li class="technician_column" id="0">
-		<div class="photo">
-		<?php echo $html->image('uploads/companies/photos/'.$tech['Company']['photo_path'] .'?' . time()); ?>
-		</div>
-		<div class="info">
-			<h4>COMPANY GROUP PHOTO</h4>
-			<p>Choose this option if you would like to show a group shot of your company.</p> 
-		</div>
-	</li>
 </ul>
 	<div class="clear"></div>
 	<?php
