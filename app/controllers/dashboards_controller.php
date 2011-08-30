@@ -11,7 +11,11 @@ class DashboardsController extends AppController {
 	}
 	
 	function admin_welcome() {
-		
+		$objReminder = ClassRegistry::init('Reminder');
+		$Reminders = $objReminder->find('all', array('conditions' => array('Reminder.company_id' => $this->Auth->user('company_id'))));
+		if(count($Reminders)) {
+			$this->redirect(array('controller' => 'dashboards', 'action' => 'index'));
+		}
 	}
 	
 	function admin_index() {

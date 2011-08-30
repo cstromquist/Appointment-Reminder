@@ -132,7 +132,8 @@ hr {
         height: 13px;
         margin: 0 3px 0 0;
         padding: 4px 9px 8px 9px;
-        background: #617287;
+        /*background: #617287;*/
+        background: #1f3b52;
         color: #fff;
         text-decoration: none;
     }
@@ -145,12 +146,8 @@ hr {
     #nav .current,
     #nav .current:hover {
         color: #008720;
-        background-color: #e2e2e2;
+        background-color: #e2e2e2!important;
         font-weight: bold;
-    }
-    
-    #nav .current {
-        color: #008720;
     }
 
     #nav a:hover {

@@ -3,9 +3,6 @@
     if ($session->check('Message.flash')) {
         $session->flash();
     }
-	if ($messages = $session->read('Message.multiFlash')) {
-		foreach($messages as $k=>$v) $session->flash('multiFlash.'.$k);
-	}
 ?>
 
 <?php
