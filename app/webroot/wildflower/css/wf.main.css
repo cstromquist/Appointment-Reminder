@@ -474,7 +474,9 @@ select {
     padding: 5px 10px;
     margin: 0 0 14px 0;
 }
-
+  .flash-error a {
+  	color: #fff;
+  }
 .flash-success {
 	color: #fff;
     background: #40a65f;

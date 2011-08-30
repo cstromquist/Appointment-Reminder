@@ -11,7 +11,7 @@
 <?php if(!count($reminders)): ?>
 	<div class="first_item">
 	<?php 
-        $url = '/' . Configure::read('Routing.admin') . '/reminders/select_theme';
+        $url = '/' . Configure::read('Routing.admin') . '/reminders/init';
         echo $html->link("CREATE YOUR FIRST REMINDER", $url, array('escape' => false)); 
     ?>
     </div>
@@ -51,7 +51,7 @@
     <li>
         <?php echo $html->link(
             '<span>' . __('Create a new reminder', true) . '</span>', 
-            array('action' => 'admin_select_theme'),
+            array('action' => 'admin_init'),
             array('class' => 'add', 'escape' => false)) ?>
     </li>
 <?php $partialLayout->blockEnd(); ?>

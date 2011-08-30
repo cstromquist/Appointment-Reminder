@@ -82,6 +82,25 @@ class RemindersController extends AppController {
 		$this->set(compact('theme', 'technician', 'companyserviceslist', 'companyservices', 'company'));
 	}
 	
+	/*
+	 * This function checks to make sure all requirements are met before sending to select theme. 
+	 */
+	function admin_init() {
+		App::import('Html');
+		$html = new HtmlHelper;
+		$company = $this->Company->findById($this->Auth->user('company_id'));
+		// check for company logo
+		if(!$company['Company']['logo_path']) {
+			$this->Session->setFlash('Please add your company logo first.  Click '.$html->link('here', array('controller' => 'companies', 'action' => 'edit')).' to add your logo.', 'default', array('class' => 'flash-error'));
+			$this->redirect(array('action' => 'index'));
+		}
+		if(!$company['Company']['payment_methods']) {
+			$this->Session->setFlash('Please add your company payment methods first.  Click '.$html->link('here', array('controller' => 'companies', 'action' => 'edit')).' to add your payment methods.', 'default', array('class' => 'flash-error'));
+			$this->redirect(array('action' => 'index'));
+		}
+	$this->redirect(array('action' => 'select_theme'));
+	}
+	
 	function admin_select_theme($theme = null, $id = null) {
 		$theme = $theme ? $theme : $this->Cookie->read('theme');
 		$this->data['Reminder']['id'] = $id;
