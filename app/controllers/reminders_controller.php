@@ -86,7 +86,7 @@ class RemindersController extends AppController {
 	 * This function checks to make sure all requirements are met before sending to select theme. 
 	 */
 	function admin_init() {
-		App::import('Html');
+		App::import('Helper', 'Html');
 		$html = new HtmlHelper;
 		$company = $this->Company->findById($this->Auth->user('company_id'));
 		// check for company logo

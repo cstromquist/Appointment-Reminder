@@ -127,11 +127,11 @@ hr {
     }
     
     #nav a {
-    	font-size: 13px;
+    	font-size: 16px;
         display: block;
         height: 13px;
         margin: 0 3px 0 0;
-        padding: 4px 9px 8px 9px;
+        padding: 5px 10px 9px 10px;
         /*background: #617287;*/
         background: #1f3b52;
         color: #fff;
