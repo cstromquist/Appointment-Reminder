@@ -95,6 +95,9 @@ class CompaniesController extends AppController {
         }
         //if (empty($company)) return $this->cakeError('save_error');
 		
+		if($this->data['Company']['redirect']) {
+			return $this->redirect($this->data['Company']['redirect']);
+		}
 		$this->Session->setFlash('Company saved.', 'default', array('class' => 'flash-success'));
 		
 		if($this->Access->isAdmin()) {

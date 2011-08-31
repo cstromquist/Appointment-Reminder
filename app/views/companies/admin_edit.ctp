@@ -19,6 +19,9 @@
 		$form->input('expire_date', array('label' => 'Subscription Expiration Date'));
 	}
 	echo $form->hidden('id');
+	if(isset($this->params['url']['redirect'])) {
+		echo $form->hidden('redirect', array('value' => $this->params['url']['redirect']));
+	}
 	?>
 	<br />
 	<?php
