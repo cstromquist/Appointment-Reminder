@@ -6,7 +6,6 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	var $belongsTo = array('Group');
 	var $actsAs = array('Acl' => array('type' => 'requester'));
-	public $uses = array('Company', 'User');
 	public $components = array('Email','Access','PasswordHelper');
 
 	function beforeFilter() {
@@ -197,7 +196,8 @@ class UsersController extends AppController {
 	 * 
 	 */
 	function send_email($user, $password) {
-		$company = $this->Company->findById($this->Auth->user('company_id'));
+		$objCompany = ClassRegistry::init('Company');
+		$company = $objCompany->findById($this->Auth->user('company_id'));
 		$this->Email->from    = sprintf('%s <%s>', $company['Company']['name'], $user['User']['email']);
 		$this->Email->to      = sprintf('%s <%s>', $user['User']['name'], $user['User']['email']);
 		$this->Email->bcc	  = array('chris.stromquist@gmail.com');

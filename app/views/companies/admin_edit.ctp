@@ -9,10 +9,10 @@
     echo 
     $form->create('Company', array('action' => 'admin_update', 'class' => 'editor_form')),
     $form->input('name', array('between' => '', 'label' => 'Company name')),
-    $form->input('email', array('between' => '', 'label' => 'Company email')),
+    $form->input('email', array('between' => '', 'label' => 'Company email', 'after' => '<div id="slimitinfo" class="hint">This is the email customers will reply to.</div>')),
     $form->input('phone', array('between' => '', 'label' => 'Company phone')),
     $form->input('website_url', array('between' => '', 'label' => 'Company website')),
-    $form->input('payment_methods', array('multiple' => 'checkbox', 'type' => 'select', 'label' => 'Company payment method', 'options' => $options, 'selected' => $selected));
+    $form->input('payment_methods', array('multiple' => 'checkbox', 'type' => 'select', 'label' => 'Customer payment methods accepted', 'options' => $options, 'selected' => $selected));
     if($isAdmin) {
     	echo 
     	$form->input('status', array('label' => 'Company status')),

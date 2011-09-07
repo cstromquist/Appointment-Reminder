@@ -46,7 +46,8 @@ class RemindersController extends AppController {
 			$this->redirect(array('action' => 'index'));
         } else {
 			$technician_id = $this->data['Reminder']['technician_id'];
-			$company = $this->Company->findById($this->Auth->user('company_id'));
+			$objCompany = ClassRegistry::init('Company');
+			$company = $objCompany->findById($this->Auth->user('company_id'));
 			if($id == null) {
 				$this->data['Reminder']['from_time'] = "07:00:00";
 				$this->data['Reminder']['to_time'] = "17:00:00";
@@ -65,7 +66,8 @@ class RemindersController extends AppController {
 			}
 		}
 		$theme = $this->data['Reminder']['theme'];
-		$technician = $this->Technician->findById($this->data['Reminder']['technician_id']);
+		$objTechnician = ClassRegistry::init('Technician');
+		$technician = $objTechnician->findById($this->data['Reminder']['technician_id']);
 		$CompanyService =& ClassRegistry::init('CompanyService'); 
 		$companyserviceslist = $CompanyService->find('list', array(
 															'conditions' => array('CompanyService.company_id' => $this->Auth->user('company_id')),
@@ -78,7 +80,8 @@ class RemindersController extends AppController {
 															'order' => array('CompanyService.name' => 'asc') 
 															)
 												);
-		$company = $this->Company->findById($this->Auth->user('company_id'));
+		$objCompany = ClassRegistry::init('Company');
+		$company = $objCompany->findById($this->Auth->user('company_id'));
 		$this->set(compact('theme', 'technician', 'companyserviceslist', 'companyservices', 'company'));
 	}
 	
@@ -88,7 +91,8 @@ class RemindersController extends AppController {
 	function admin_init() {
 		App::import('Helper', 'Html');
 		$html = new HtmlHelper;
-		$company = $this->Company->findById($this->Auth->user('company_id'));
+		$objCompany = ClassRegistry::init('Company');
+		$company = $objCompany->findById($this->Auth->user('company_id'));
 		// check for company logo
 		if(!$company['Company']['logo_path']) {
 			$this->Session->setFlash('Please add your company logo first.  Click '.$html->link('here', array('controller' => 'companies', 'action' => 'edit')).' to add your logo.', 'default', array('class' => 'flash-error'));
@@ -125,11 +129,13 @@ class RemindersController extends AppController {
 		$technician_id = $technician_id ? $technician_id : $this->Cookie->read('tech_id');
 		$this->data['Reminder']['id'] = $id;
 		$this->data['Reminder']['technician_id'] = $technician_id;
+		$objTechnician = ClassRegistry::init('Technician');
 		if($technician_id) {
-			$technician = $this->Technician->findById($this->data['Reminder']['technician_id']);
+			$technician = $objTechnician->findById($this->data['Reminder']['technician_id']);
 		}
-		$technicians = $this->Technician->find('all', array('conditions' => array('Technician.company_id' => $this->Auth->user('company_id'))));
-		$company = $this->Company->findById($this->Auth->user('company_id'));
+		$technicians = $objTechnician->find('all', array('conditions' => array('Technician.company_id' => $this->Auth->user('company_id'))));
+		$objCompany = ClassRegistry::init('Company');
+		$company = $objCompany->findById($this->Auth->user('company_id'));
 		$this->set(compact('technicians', 'theme', 'company'));
 	}
 	
@@ -181,7 +187,8 @@ class RemindersController extends AppController {
 	 */
 	function send_email($reminder) {
 		$reminder_data = $this->Reminder->findById($reminder['Reminder']['id']);
-		$company = $this->Company->findById($this->Auth->user('company_id'));
+		$objCompany = ClassRegistry::init('Company');
+		$company = $objCompany->findById($this->Auth->user('company_id'));
 		$companyurl = $company['Company']['website_url'];
 		
 		$settings = Configure::read('AppSettings');
@@ -234,8 +241,10 @@ class RemindersController extends AppController {
 	function generate_image($reminder, $return_mode = "") {
 		App::import('Vendor', 'igenclass', array('file' =>'igen'.DS.'igen.class.php'));
 		
-		$company = $this->Company->findById($this->Auth->user('company_id'));
-		$technician = $this->Technician->findById($reminder['Reminder']['technician_id']);
+		$objCompany = ClassRegistry::init('Company');
+		$company = $objCompany->findById($this->Auth->user('company_id'));
+		$objTechnician = ClassRegistry::init('Technician');
+		$technician = $objTechnician->findById($reminder['Reminder']['technician_id']);
 		
 		$array = explode("\n", $reminder['Reminder']['features_benefits']);
 		foreach($array as $key => $val) {

@@ -1,7 +1,3 @@
-<?php
-	echo 
-    $form->create('Reminder', array('action' => 'mass_update'));
-?>
 <h2 class="section">Appointment Reminders</h2>
 <?php 
     if ($session->check('Message.flash')) {
@@ -16,6 +12,10 @@
     ?>
     </div>
 <?php else: ?>
+<?php
+	echo 
+    $form->create('Reminder', array('action' => 'mass_update'));
+?>
 <?php echo $this->element('admin_select_actions'); ?>
 
 <ul class="list">
@@ -30,8 +30,7 @@
 
 <?php
     echo
-    $this->element('admin_select_actions'), 
-	//$this->element('admin_pagination'),
+    $this->element('admin_select_actions'),
     $form->end();
 ?>
 

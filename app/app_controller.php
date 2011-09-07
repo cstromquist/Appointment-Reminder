@@ -156,7 +156,6 @@ class AppController extends Controller {
      * @TODO Could be much faster using custom UPDATE or DELETE queries
      */
     function admin_mass_update() {
-        //fb($this->data);exit();
         if ($this->data['__action'] == 'delete') {
             $this->data['__action'] = 'mass_delete';
         }
@@ -171,6 +170,7 @@ class AppController extends Controller {
                 }
             }
         }
+		
         // If the action is recognized execute it
         if (in_array($this->data['__action'], $availActions, true)) {
         	foreach($ids as $id){

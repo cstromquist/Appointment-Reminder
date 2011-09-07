@@ -94,8 +94,8 @@
 	<?php
 	    echo 
 	    $form->create('Reminder', array('action' => 'email_details', 'class' => 'editor_form')),
-	    $form->input('fname', array('class' => 'medium', 'label' => 'First Name', 'error' => 'Please specify a first name.')),
-	    $form->input('lname', array('class' => 'medium', 'label' => 'Last Name')),
+	    $form->input('fname', array('class' => 'medium', 'label' => 'Customer First Name', 'error' => 'Please specify a first name.')),
+	    $form->input('lname', array('class' => 'medium', 'label' => 'Customer Last Name')),
 	    $form->input('email', array('class' => 'medium', 'size' => '20')),
 		$form->input('service_date', array('size' => '15', 'class' => 'w8em format-y-m-d divider-dash highlight-days-12 no-transparency')),
 		$form->input('from_time', array('type' => 'time')),

@@ -59,7 +59,7 @@
         <?php
             echo
             $form->create('Dashboard', array('url' => $html->url(array('action' => 'admin_search', 'base' => false)), 'class' => 'search')),
-            $form->input('query', array('label' => __('Find a company or technician by typing', true), 'id' => 'SearchQuery')),
+            $form->input('query', array('label' => __('Find a reminder or technician by typing', true), 'id' => 'SearchQuery')),
             $form->end();
         ?>
     </li>

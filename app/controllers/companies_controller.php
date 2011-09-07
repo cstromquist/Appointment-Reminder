@@ -84,6 +84,7 @@ class CompaniesController extends AppController {
 			$this->Session->setFlash('Please choose a payment method.', 'default', array('class' => 'flash-error'));
 			return $this->redirect(array('action' => 'edit'), $this->data[$this->modelClass]['id']);
 		}
+		$this->data[$this->modelClass]['website_url'] = preg_replace('/http:\/\//', '', $this->data[$this->modelClass]['website_url']); 
 		$payment_methods = substr($payment_methods, 0, strlen($payment_methods) - 1);
 		$this->data[$this->modelClass]['payment_methods'] = $payment_methods;
         $this->Company->create($this->data);
@@ -181,6 +182,7 @@ class CompaniesController extends AppController {
 				$this->Session->setFlash('Please select at least one service.', 'default', array('class' => 'flash-error'));
 				return;
 			}
+			$this->data[$this->modelClass]['website_url'] = preg_replace('/http:\/\//', '', $this->data[$this->modelClass]['website_url']);
 			$this->data['Company']['status'] = 0;
 			$this->data['Company']['activation_id'] = $this->Company->create_unique_id();
 			$this->data['User'][0]['group_id'] = Group::$ManagerId;
