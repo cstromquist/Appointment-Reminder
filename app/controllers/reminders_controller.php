@@ -197,7 +197,7 @@ class RemindersController extends AppController {
 		$this->Email->to      = sprintf('%s %s <%s>', $reminder['Reminder']['fname'], $reminder['Reminder']['lname'], $reminder['Reminder']['email']);
 		$this->Email->bcc	  = array($settings['contact_email']);
 		$this->Email->replyTo = sprintf('%s <%s>', $company['Company']['name'], $company['Company']['email']);
-		$this->Email->subject = 'Your '. $reminder_data['CompanyService']['name'] . ' Service Appointment Reminder';
+		$this->Email->subject = 'Your '. $company['Company']['name'] . ' ' . $reminder_data['CompanyService']['name'] . ' Service Appointment Reminder';
 		$this->Email->template = 'reminder';
 		$this->Email->sendAs = 'both';
 		
