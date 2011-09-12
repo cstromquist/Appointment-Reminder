@@ -19,6 +19,9 @@
         	'class' => 'wf-form-button',
     		)
 		);
+		if(isset($this->params['url']['redirect'])) {
+			echo $form->hidden('redirect', array('value' => $this->params['url']['redirect']));
+		}
 		echo $form->end($options);
 	?> <span>or</span> <?php echo $html->link(__('Cancel', true), array('action' => 'index'), array('class' => 'cancel')); ?>
 </div>

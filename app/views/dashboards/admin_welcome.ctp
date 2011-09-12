@@ -13,6 +13,6 @@
 		</ul>
 	</li>
 	<li><?php echo $html->link('Service messages', array('controller' => 'company_services', 'action' => 'index')); ?><?php if($companyservicescheck): ?> <?php echo $html->image('icon-green-checkmark.png'); ?><?php endif; ?></li>
-	<li><?php echo $html->link('Create technician profiles', array('controller' => 'technicians', 'action' => 'edit', '?' => 'redirect=' . '/admin/dashboards/welcome/')); ?><?php if($techniciancheck): ?> <?php echo $html->image('icon-green-checkmark.png'); ?><?php endif; ?></li>
+	<li><?php echo $html->link('Create technician profiles', array('controller' => 'technicians', 'action' => 'create', '?' => 'redirect=' . '/admin/dashboards/welcome/')); ?><?php if($techniciancheck): ?> <?php echo $html->image('icon-green-checkmark.png'); ?><?php endif; ?></li>
 	<li><?php echo $html->link('Send your first email!', array('controller' => 'reminders', 'action' => 'init')); ?><?php if($reminderscheck): ?> <?php echo $html->image('icon-green-checkmark.png'); ?><?php endif; ?></li>
 </ol>

@@ -83,7 +83,11 @@ class TechniciansController extends AppController {
 			$this->data['Technician']['company_id'] = $this->Auth->user('company_id');
 			$this->Technician->create($this->data);
 			if ($this->Technician->save($this->data)) {
-				return $this->redirect(array('action' => 'edit', $this->Technician->id));
+				if($this->data['Technician']['redirect']) {
+					return $this->redirect(array('action' => 'edit', $this->Technician->id, '?' => 'redirect=' . $this->data['Technician']['redirect']));
+				} else {
+					return $this->redirect(array('action' => 'edit', $this->Technician->id));
+				}
 			}
 		}
 	}
