@@ -32,7 +32,7 @@ class RemindersController extends AppController {
     }
 	
 	function admin_email_details($id = null) {
-		if (!empty($this->data) && $this->data['Reminder']['form_email_details']) { 
+		if (!empty($this->data) && isset($this->data['Reminder']['form_email_details']) && $this->data['Reminder']['form_email_details']) { 
             // We don't do any real saving, we just validate the model 
             if ($this->Reminder->create($this->data) && $this->Reminder->validates()) { 
                 $this->set('valid', true);

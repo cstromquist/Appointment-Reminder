@@ -32,13 +32,16 @@
     }
 ?>
 <?php if(isset($valid) && $valid): ?>
-	Don't like it? <input type="button" onClick="history.back(-1)" value="Go back and make changes" />
+	Don't like it? <input type="button" id="goback" value="Go back and make changes" />
 <script type="text/javascript">
 	<!--
 	 $(document).ready(function(){
 		$("#form_preview").submit();
 		$('#form_button').click( function(){
 			$("#form_send").submit();
+		});
+		$('#goback').click( function(){
+			$("#form_back").submit();
 		});
 	});
 	-->
@@ -69,6 +72,26 @@
 	<?php
 	    echo 
 	    $form->create('Reminder', array('action' => 'email_send', 'id' => 'form_send')),
+	    $form->input('fname', array('class' => 'medium', 'label' => 'First Name', 'error' => 'Please specify a first name.')),
+	    $form->input('lname', array('class' => 'medium', 'label' => 'Last Name')),
+	    $form->input('email', array('class' => 'medium', 'size' => '20')),
+		$form->input('service_date', array('size' => '15', 'class' => 'w8em format-y-m-d divider-dash highlight-days-12 no-transparency')),
+		$form->input('from_time', array('type' => 'time')),
+		$form->input('to_time', array('type' => 'time')),
+		$form->input('service_message', array('type' => 'textarea')),
+		$form->input('features_benefits', array('type' => 'textarea', 'rows' => 10, 'cols' => 40, 'label' => 'You\'ve made a great decision!')),
+		$form->input('services', array('type' => 'textarea', 'rows' => 10, 'cols' => 40, 'label' => 'As Long As We\'re Here<br /> Consider taking advantage of our other services:')),
+		$form->input('other_services', array('type' => 'textarea', 'rows' => 10, 'cols' => 40, 'label' => 'Are there any other services you would like?')),
+		$form->hidden('theme'),
+		$form->hidden('technician_id'),
+		$form->hidden('company_service_id'),
+		$form->hidden('id'),
+		$form->end();
+	?>
+	<div class="clear" style="padding-bottom: 10px;"></div>
+	<?php
+	    echo 
+	    $form->create('Reminder', array('action' => 'email_details', 'id' => 'form_back')),
 	    $form->input('fname', array('class' => 'medium', 'label' => 'First Name', 'error' => 'Please specify a first name.')),
 	    $form->input('lname', array('class' => 'medium', 'label' => 'Last Name')),
 	    $form->input('email', array('class' => 'medium', 'size' => '20')),
