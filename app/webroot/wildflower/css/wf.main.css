@@ -1859,7 +1859,8 @@ ul#theme_select li img {
 }
 /* Email Preview */
 form#form_preview,
-form#form_send {
+form#form_send,
+form#form_back {
 	display: none;
 }
 
