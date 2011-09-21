@@ -326,8 +326,8 @@ function generateImage(){
 	imagettftext($im, 11, 0, LOGO_BLOCK_CENTER - (($temp[2] - $temp[0])/2), LOGO_BLOCK_Y + 140, $text_color, MISO, $this->moreInfoMessage);
 
 	//website
-	$temp = imagettfbbox(21, 0, MISO, $this->website);
-	imagettftext($im, 21, 0, LOGO_BLOCK_CENTER - (($temp[2] - $temp[0])/2), LOGO_BLOCK_Y + 164, $text_color, MISO_BOLD, $this->website);
+	$temp = imagettfbbox(18, 0, MISO, $this->website);
+	imagettftext($im, 18, 0, LOGO_BLOCK_CENTER - (($temp[2] - $temp[0])/2), LOGO_BLOCK_Y + 164, $text_color, MISO_BOLD, $this->website);
 
 	//cancel
 	$size= 10.8;
@@ -361,24 +361,24 @@ function generateImage(){
 	//add copyright
 	imagettftext($im, 7, 0, COPYRIGHT_X, COPYRIGHT_Y, $copyright_color, MYRIAD_BOLD, $this->copyright);
 
-	$top_box_text_width = 510;
+	$top_box_text_width = 540;
 	
 	if($this->format == 'tech'){
 
 		//add greeting
-		imagettftext($im, 14, 0, TOP_BOX_X + 18, TOP_BOX_Y + 24, $top_title_color, NEWS_GOTHIC_BOLD_OBL, $this->customerGreeting);
+		imagettftext($im, 12, 0, TOP_BOX_X + 18, TOP_BOX_Y + 24, $top_title_color, NEWS_GOTHIC_BOLD_OBL, $this->customerGreeting);
 	
 		//add greeting line 1 & 2
 		$customerMessageBlock = $this->makeTextBlock($this->customerMessage, NEWS_GOTHIC_BOLD_OBL, 14, $top_box_text_width);
-		imagettftext($im, 14, 0, TOP_BOX_X + 18, TOP_BOX_Y + 48, $top_title_color, NEWS_GOTHIC_BOLD_OBL, $customerMessageBlock);
+		imagettftext($im, 12, 0, TOP_BOX_X + 18, TOP_BOX_Y + 42, $top_title_color, NEWS_GOTHIC_BOLD_OBL, $customerMessageBlock);
 	
-		imagettftext($im, 18, 0, TOP_BOX_X + 66, TOP_BOX_Y + 100, $top_text_color, HELVETICA_COND, 'Service Date:');
-		imagettftext($im, 18, 0, TOP_BOX_X + 66, TOP_BOX_Y + 124, $top_text_color, HELVETICA_COND, 'Service Time:');	
-		imagettftext($im, 18, 0, TOP_BOX_X + 66, TOP_BOX_Y + 148, $top_text_color, HELVETICA_COND, 'Your Technician:');	
+		imagettftext($im, 15, 0, TOP_BOX_X + 51, TOP_BOX_Y + 104, $top_text_color, HELVETICA_COND, 'Service Date:');
+		imagettftext($im, 15, 0, TOP_BOX_X + 51, TOP_BOX_Y + 128, $top_text_color, HELVETICA_COND, 'Service Time:');	
+		imagettftext($im, 15, 0, TOP_BOX_X + 51, TOP_BOX_Y + 152, $top_text_color, HELVETICA_COND, 'Your Technician:');	
 	
-		imagettftext($im, 18, 0, TOP_BOX_X + 284, TOP_BOX_Y + 100, $top_text_color, HELVETICA_COND, $this->serviceDate);
-		imagettftext($im, 18, 0, TOP_BOX_X + 284, TOP_BOX_Y + 124, $top_text_color, HELVETICA_COND, $this->serviceTime);	
-		imagettftext($im, 18, 0, TOP_BOX_X + 284, TOP_BOX_Y + 148, $top_text_color, HELVETICA_COND, $this->techName);	
+		imagettftext($im, 15, 0, TOP_BOX_X + 260, TOP_BOX_Y + 104, $top_text_color, HELVETICA_COND, $this->serviceDate);
+		imagettftext($im, 15, 0, TOP_BOX_X + 260, TOP_BOX_Y + 128, $top_text_color, HELVETICA_COND, $this->serviceTime);	
+		imagettftext($im, 15, 0, TOP_BOX_X + 260, TOP_BOX_Y + 152, $top_text_color, HELVETICA_COND, $this->techName);	
 	
 		//add tech bio
 		$bio = $this->makeTextBlock($this->techBio, MISO, 11, 330); 
@@ -393,18 +393,18 @@ function generateImage(){
 	}else{
 
 		//add greeting
-		imagettftext($im, 14, 0, TOP_BOX_X + 18, TOP_BOX_Y + 32, $top_title_color, NEWS_GOTHIC_BOLD_OBL, $this->customerGreeting);
+		imagettftext($im, 12, 0, TOP_BOX_X + 18, TOP_BOX_Y + 32, $top_title_color, NEWS_GOTHIC_BOLD_OBL, $this->customerGreeting);
 	
 		//add greeting line 1 & 2
 		$customerMessageBlock = $this->makeTextBlock($this->customerMessage, NEWS_GOTHIC_BOLD_OBL, 14, $top_box_text_width);
-		imagettftext($im, 14, 0, TOP_BOX_X + 18, TOP_BOX_Y + 56, $top_title_color, NEWS_GOTHIC_BOLD_OBL, $customerMessageBlock);
+		imagettftext($im, 12, 0, TOP_BOX_X + 18, TOP_BOX_Y + 52, $top_title_color, NEWS_GOTHIC_BOLD_OBL, $customerMessageBlock);
 		
 		//add service date/time
-		imagettftext($im, 18, 0, TOP_BOX_X + 66, TOP_BOX_Y + 116, $top_text_color, HELVETICA_COND, 'Service Date:');
-		imagettftext($im, 18, 0, TOP_BOX_X + 66, TOP_BOX_Y + 140, $top_text_color, HELVETICA_COND, 'Service Time:');	
+		imagettftext($im, 15, 0, TOP_BOX_X + 51, TOP_BOX_Y + 120, $top_text_color, HELVETICA_COND, 'Service Date:');
+		imagettftext($im, 15, 0, TOP_BOX_X + 51, TOP_BOX_Y + 144, $top_text_color, HELVETICA_COND, 'Service Time:');	
 	
-		imagettftext($im, 18, 0, TOP_BOX_X + 284, TOP_BOX_Y + 116, $top_text_color, HELVETICA_COND, $this->serviceDate);
-		imagettftext($im, 18, 0, TOP_BOX_X + 284, TOP_BOX_Y + 140, $top_text_color, HELVETICA_COND, $this->serviceTime);	
+		imagettftext($im, 15, 0, TOP_BOX_X + 260, TOP_BOX_Y + 120, $top_text_color, HELVETICA_COND, $this->serviceDate);
+		imagettftext($im, 15, 0, TOP_BOX_X + 260, TOP_BOX_Y + 144, $top_text_color, HELVETICA_COND, $this->serviceTime);	
 	
 	}
 
