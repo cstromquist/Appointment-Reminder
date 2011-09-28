@@ -3,7 +3,6 @@ class RemindersController extends AppController {
 	
 	public $helpers = array('List', 'Time', 'Text', 'Session', 'Form', 'Ajax');
 	public $pageTitle = 'Reminders';
-	public $uses = array('Company', 'Reminder', 'Technician', 'Service');
 	public $components = array('Email');
 	
 	function beforeFilter() {
@@ -208,7 +207,8 @@ class RemindersController extends AppController {
 		$from_time = date('h:i A', $from_date);
 		$to_time = date('h:i A', $to_date);
 		
-		$technician = $this->Technician->findById($reminder['Reminder']['technician_id']);
+		$objTechnician = ClassRegistry::init('Technician');
+		$technician = $objTechnician->findById($reminder['Reminder']['technician_id']);
 		
 		$reminder['Reminder']['date'] = $date;
 		$reminder['Reminder']['from_time'] = $from_time;

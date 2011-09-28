@@ -98,7 +98,7 @@ class UsersController extends AppController {
             $User->saveField('last_login', date('Y-m-d h:i:s', time()));
             $User->save($user);
 			
-            $this->redirect($this->Auth->redirect());
+            $this->redirect(array('controller' => 'admin'));
         }
 
         // Try to authorize user with data from a cookie

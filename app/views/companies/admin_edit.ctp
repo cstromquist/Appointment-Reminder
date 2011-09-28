@@ -8,7 +8,7 @@
 <?php
     echo 
     $form->create('Company', array('action' => 'admin_update', 'class' => 'editor_form')),
-    $form->input('name', array('between' => '', 'label' => 'Company name', 'maxlength' => '25', 'size' => '30', 'after' => '<div id="slimitinfo" class="hint">Maximum of 25 characters.</div>')),
+    $form->input('name', array('between' => '', 'label' => 'Company name', 'maxlength' => '50', 'size' => '50', 'after' => '<div id="slimitinfo" class="hint">Maximum of 50 characters.</div>')),
     $form->input('email', array('between' => '', 'label' => 'Company email', 'size' => '40', 'after' => '<div id="slimitinfo" class="hint">This is the email customers will reply to.</div>')),
     $form->input('phone', array('between' => '', 'label' => 'Company phone')),
     $form->input('website_url', array('between' => '', 'label' => 'Company website')),
