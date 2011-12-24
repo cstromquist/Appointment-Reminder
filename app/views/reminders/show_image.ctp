@@ -1,0 +1,1 @@
+<?php echo $html->image(FULL_BASE_URL . $this->base . '/img/uploads/reminders/'.$image); ?>
