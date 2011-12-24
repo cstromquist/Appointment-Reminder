@@ -4,6 +4,7 @@
     $form->input('password', array('label' => 'New password', 'tabindex' => '1')),
     $form->input('confirm_password', array('label' => 'New password again', 'type' => 'password', 'tabindex' => '2')),
     $form->hidden('name'),
+    $form->hidden('company_id'),
     $form->hidden('id');
 ?>
     <?php

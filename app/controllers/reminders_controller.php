@@ -3,6 +3,7 @@ class RemindersController extends AppController {
 	
 	public $helpers = array('List', 'Time', 'Text', 'Session', 'Form', 'Ajax');
 	public $pageTitle = 'Reminders';
+	public $uses = array('Company', 'Reminder', 'Technician', 'Service');
 	public $components = array('Email');
 	
 	function beforeFilter() {
@@ -196,7 +197,7 @@ class RemindersController extends AppController {
 		$this->Email->to      = sprintf('%s %s <%s>', $reminder['Reminder']['fname'], $reminder['Reminder']['lname'], $reminder['Reminder']['email']);
 		$this->Email->bcc	  = array($settings['contact_email']);
 		$this->Email->replyTo = sprintf('%s <%s>', $company['Company']['name'], $company['Company']['email']);
-		$this->Email->subject = 'Your '. $company['Company']['name'] . ' ' . $reminder_data['CompanyService']['name'] . ' Service Appointment Reminder';
+		$this->Email->subject = 'Your '. $reminder_data['CompanyService']['name'] . ' Service Appointment Reminder';
 		$this->Email->template = 'reminder';
 		$this->Email->sendAs = 'both';
 		
@@ -207,8 +208,7 @@ class RemindersController extends AppController {
 		$from_time = date('h:i A', $from_date);
 		$to_time = date('h:i A', $to_date);
 		
-		$objTechnician = ClassRegistry::init('Technician');
-		$technician = $objTechnician->findById($reminder['Reminder']['technician_id']);
+		$technician = $this->Technician->findById($reminder['Reminder']['technician_id']);
 		
 		$reminder['Reminder']['date'] = $date;
 		$reminder['Reminder']['from_time'] = $from_time;
@@ -367,6 +367,10 @@ class RemindersController extends AppController {
 		$return['from'] = sprintf('%s %s:%s:00', $data['Reminder']['service_date'], $from_hour, $from_min);
 		$return['to'] = sprintf('%s %s:%s:00', $data['Reminder']['service_date'], $to_hour, $to_min);
 		return $return;
+	}
+	
+	function show_image($image) {
+		$this->set(compact('image'));
 	}
 	
 }
