@@ -381,8 +381,8 @@ function generateImage(){
 		imagettftext($im, 15, 0, TOP_BOX_X + 260, TOP_BOX_Y + 152, $top_text_color, HELVETICA_COND, $this->techName);	
 	
 		//add tech bio
-		$bio = $this->makeTextBlock($this->techBio, MISO, 11, 330); 
-		imagettfmultilinetext($im, 11, 0, LEFT_MARGIN, TOP_MARGIN + 10, $text_color, MISO, $bio, 1.5);
+		$bio = $this->makeTextBlock($this->techBio, MISO_BOLD, 11, 330); 
+		imagettfmultilinetext($im, 11, 0, LEFT_MARGIN, TOP_MARGIN + 10, $text_color, MISO_BOLD, $bio, 1.5);
 
 		//add tech name under photo
 		//200
@@ -409,7 +409,7 @@ function generateImage(){
 	}
 
 		//add benefits title
-		imagettftext($im, 24, 0, BENEFITS_X, BENEFITS_Y, $title_color, MISO_BOLD, $this->benefitsTitle);
+		imagettftext($im, 20, 0, BENEFITS_X, BENEFITS_Y, $title_color, MISO_BOLD, $this->benefitsTitle);
 	
 		//add benefits list
 		$benefitsListBlock = "";
@@ -418,11 +418,11 @@ function generateImage(){
 			$benefitsListBlock .= BULLET .' '. str_replace("\n", "\n   ", $this->makeTextBlock($item, MISO, 11, BENEFITS_WIDTH)) . "\n";
 		
 		}
-		imagettfmultilinetext($im, 11, 0, BENEFITS_X, BENEFITS_Y + 24, $text_color, MISO, $benefitsListBlock, 1.5);
+		imagettfmultilinetext($im, 11, 0, BENEFITS_X, BENEFITS_Y + 24, $text_color, MISO_BOLD, $benefitsListBlock, 1.5);
 		
 		//add upsell title
-		$upsell_size = imagettfbbox(36, 0, MISO_BOLD, $this->upsellTitle);
-		imagettftext($im, 36, 0, $this->center($upsell_size[2] - $upsell_size[0]), UPSELL_Y, $title_color, MISO_BOLD, $this->upsellTitle);
+		$upsell_size = imagettfbbox(20, 0, MISO_BOLD, $this->upsellTitle);
+		imagettftext($im, 20, 0, $this->center($upsell_size[2] - $upsell_size[0]), UPSELL_Y, $title_color, MISO_BOLD, $this->upsellTitle);
 
 		//add upsell subtitle
 		$subtitle_size = imagettfbbox(20, 0, MISO_BOLD, $this->upsellSubTitle);
