@@ -50,7 +50,7 @@ define('BENEFITS_X',74);
 define('BENEFITS_Y',320);
 define('BENEFITS_WIDTH',330);
 
-define('UPSELL_Y',490);
+define('UPSELL_Y',480);
 define('UPSELL_LIST_X',85);
 define('UPSELL_LIST_WIDTH',205); //determine wrap point - for 2 col lists, this is the same for both
 
