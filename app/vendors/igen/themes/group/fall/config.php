@@ -27,14 +27,14 @@ define('NEXSTAR_LOGO_Y',854);
 
 //where to start text blocks
 define('LEFT_MARGIN',56);
-define('TOP_MARGIN',267); //for text, not top box
+define('TOP_MARGIN',237); //for text, not top box
 
 //top white box vertical position
 define('TOP_BOX_X',30);
 define('TOP_BOX_Y',16);
 
 //photo position and size
-define('PHOTO_BOX','405,240,170,180'); //x,y,w,h
+define('PHOTO_BOX','405,210,170,180'); //x,y,w,h
 
 //copyright and credit card items
 define('COPYRIGHT_X',361);
@@ -49,10 +49,10 @@ define('LOGO_BLOCK_CENTER',450); //items are centered around this point
 
 //lists
 define('BENEFITS_X',60);
-define('BENEFITS_Y',289);
-define('BENEFITS_WIDTH',330);
+define('BENEFITS_Y',229);
+define('BENEFITS_WIDTH',325);
 
-define('UPSELL_Y',470);
+define('UPSELL_Y',450);
 define('UPSELL_LIST_X',85);
 define('UPSELL_LIST_WIDTH',205); //determine wrap point - for 2 col lists, this is the same for both
 

@@ -388,7 +388,7 @@ function generateImage(){
 		//200
 		$temp = imagettfbbox(19, 0, MISO_BOLD, $this->techName);
 		$pos = $photo_box[0] + (($photo_box[2]/2) - ($temp[2] - $temp[0])/2);
-		imagettftext($im, 19, 0, $pos, TOP_MARGIN + 200, $text_color, MISO_BOLD, $this->techName);
+		imagettftext($im, 19, 0, $pos, TOP_MARGIN + 170, $text_color, MISO_BOLD, $this->techName);
 		
 	}else{
 
