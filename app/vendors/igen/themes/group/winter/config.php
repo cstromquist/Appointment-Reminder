@@ -50,7 +50,7 @@ define('LOGO_BLOCK_CENTER',450); //items are centered around this point
 //text blocks
 define('BENEFITS_X',60);
 define('BENEFITS_Y',240);
-define('BENEFITS_WIDTH',330);
+define('BENEFITS_WIDTH',320);
 
 define('UPSELL_Y',440);
 define('UPSELL_LIST_X',85);
@@ -60,6 +60,6 @@ define('UPSELL_LIST_WIDTH',205); //determine wrap point - for 2 col lists, this 
 //define('UPSELL_LIST_COLS',2);
 define('UPSELL_LIST_GUTTER',24);
 
-define('SERVICES_Y',630);
+define('SERVICES_Y',640);
 define('SERVICES_LIST_X',85);
 define('SERVICES_LIST_WIDTH',260); //determine wrap point

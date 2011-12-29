@@ -56,6 +56,6 @@ define('UPSELL_LIST_WIDTH',205); //determine wrap point - for 2 col lists, this 
 //define('UPSELL_LIST_COLS',2);
 define('UPSELL_LIST_GUTTER',24);
 
-define('SERVICES_Y',610);
+define('SERVICES_Y',630);
 define('SERVICES_LIST_X',85);
 define('SERVICES_LIST_WIDTH',230); //determine wrap point

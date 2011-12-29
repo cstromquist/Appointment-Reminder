@@ -32,7 +32,7 @@ define('TOP_BOX_X',30);
 define('TOP_BOX_Y',16);
 
 //photo position and size - x,y,w,h
-define('PHOTO_BOX','430,220,140,140');
+define('PHOTO_BOX','430,190,140,140');
 
 //copyright and credit card items
 define('COPYRIGHT_X',313);
@@ -58,6 +58,6 @@ define('UPSELL_LIST_WIDTH',205); //determine wrap point - for 2 col lists, this 
 //define('UPSELL_LIST_COLS',2);
 define('UPSELL_LIST_GUTTER',24);
 
-define('SERVICES_Y',630);
+define('SERVICES_Y',650);
 define('SERVICES_LIST_X',85);
 define('SERVICES_LIST_WIDTH',260); //determine wrap point
