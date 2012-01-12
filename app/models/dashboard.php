@@ -10,7 +10,7 @@ class Dashboard extends AppModel {
     
     function findRecentHappening($group_id, $company_id = null) {
         // Get changed or added companies, technicians, emails sent, recent company sign-ups
-        $limit = 15;
+        $limit = 20;
         $recursive = -1;
 		$conditions = null;
         $items = array();		
@@ -23,7 +23,8 @@ class Dashboard extends AppModel {
 		
         foreach ($models as $model => $fields) {
             $class = ClassRegistry::init($model);
-            $items = array_merge($items, $class->find('all', compact('limit', 'recursive', 'fields', 'conditions')));
+            $order = array($model.'.updated DESC');
+            $items = array_merge($items, $class->find('all', compact('limit', 'recursive', 'fields', 'conditions', 'order')));
         }
 
         // Sort by update time
