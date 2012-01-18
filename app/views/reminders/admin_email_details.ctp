@@ -6,7 +6,7 @@
 	var other_services = new Array;
 	<?php $i = 0; ?>
 	<?php foreach($companyservices as $service): ?>
-	service_message[<?php echo $i ?>] = "<?php echo $service['Service']['service_message'] ?>";
+	service_message[<?php echo $i ?>] = "<?php echo $service['CompanyService']['service_message'] ?>";
 	fb[<?php echo $i ?>] = "<?php echo str_replace(array('"',"'", "\r", "\n", "\0"), array('\"','\\\'','\r', '\n', '\0'), $service['CompanyService']['features_benefits']) ?>";
 	services[<?php echo $i ?>] = "<?php echo str_replace(array('"',"'", "\r", "\n", "\0"), array('\"','\\\'','\r', '\n', '\0'), $service['CompanyService']['services']) ?>";
 	other_services[<?php echo $i ?>] = "<?php echo str_replace(array('"',"'", "\r", "\n", "\0"), array('\"','\\\'','\r', '\n', '\0'), $service['CompanyService']['other_services']) ?>";
