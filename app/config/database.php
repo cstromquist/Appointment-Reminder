@@ -85,9 +85,9 @@ class DATABASE_CONFIG {
 	    'encoding' => 'utf8',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'esws_broadcastdesign',
-		'password' => 'bdg.local',
-		'database' => 'esws_broadcastdesign',
+		'login' => 'root',
+		'password' => 'root',
+		'database' => 'bdg_v1',
 	    'port' => 3306
 	);
 	

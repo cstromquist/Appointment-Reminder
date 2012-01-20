@@ -14,7 +14,7 @@
 <?php else: ?>
 <?php
 	echo 
-    $form->create('Reminder', array('action' => 'mass_update'));
+    $form->create('Reminder', array('action' => 'admin_mass_update'));
 ?>
 <?php echo $this->element('admin_select_actions'); ?>
 

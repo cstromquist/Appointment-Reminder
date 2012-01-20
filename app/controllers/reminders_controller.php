@@ -3,7 +3,6 @@ class RemindersController extends AppController {
 	
 	public $helpers = array('List', 'Time', 'Text', 'Session', 'Form', 'Ajax');
 	public $pageTitle = 'Reminders';
-	public $uses = array('Company', 'Reminder', 'Technician', 'Service');
 	public $components = array('Email');
 	
 	function beforeFilter() {
