@@ -1,5 +1,6 @@
 # PHP version - on _some_ web hosts you enable PHP5 like this:
-# AddType x-mapp-php5 .php
+#AddType x-mapp-php5 .php
+php_value date.timezone America/Chicago 
 
 <IfModule mod_rewrite.c>
    RewriteEngine on

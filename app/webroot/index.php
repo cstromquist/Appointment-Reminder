@@ -24,6 +24,7 @@
  * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
  */
+if (defined("E_DEPRECATED")) error_reporting(E_ALL ^ E_DEPRECATED);
 /**
  * Use the DS to separate the directories in other defines
  */
