@@ -287,9 +287,9 @@ function generateImage(){
 	imagedestroy($pb);
 	
 	//add nexstar logo
-	$nl = imagecreatefrompng($this->docroot.'igen/assets/common/nexstar-logo.png');
-	imagecopy ( $im, $nl, NEXSTAR_LOGO_X, NEXSTAR_LOGO_Y, 0, 0, 75, 52 );
-	imagedestroy($nl);
+	//$nl = imagecreatefrompng($this->docroot.'igen/assets/common/nexstar-logo.png');
+	//imagecopy ( $im, $nl, NEXSTAR_LOGO_X, NEXSTAR_LOGO_Y, 0, 0, 75, 52 );
+	//imagedestroy($nl);
 
 	//add company logo
 	if(REVERSE_LOGO){

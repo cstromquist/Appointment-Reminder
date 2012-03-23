@@ -81,14 +81,14 @@ class DATABASE_CONFIG {
      * @var array
      */
 	public $default = array(
-		'driver' => 'mysqli',
+		'driver' => 'mysql',
 	    'encoding' => 'utf8',
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'root',
-		'password' => 'root',
+		'password' => 'guitar',
 		'database' => 'bdg_v1',
-	    'port' => 3306
+	    'port' => '/tmp/mysql.sock',
 	);
 	
 	/**

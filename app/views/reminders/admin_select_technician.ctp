@@ -40,7 +40,7 @@
 	<div class="clear"></div>
 	<h3>Technician Notification</h3>
 	<?php foreach($technicians as $tech): ?>
-	<li class="technician_column" id="<?= $tech['Technician']['id'] ?>">
+	<li class="technician_column" id="<?php echo $tech['Technician']['id'] ?>">
 		<div class="photo">
 		<?php if($tech['Technician']['image_path'] != "") { echo $html->image('uploads/technicians/'.$tech['Technician']['image_path'] .'?' . time()); } ?>
 		</div>

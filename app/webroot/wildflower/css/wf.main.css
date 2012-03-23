@@ -1841,9 +1841,10 @@ table.reminders_list {
 /* Theme Selector */
 ul#theme_select li {
 	display: inline;
-	float: right;
+	float: left;
 	width: 33%;
 	text-align: center;
+	margin-bottom: 35px;
 }
 ul#theme_select li:hover {
 	background-color: #efefef;
