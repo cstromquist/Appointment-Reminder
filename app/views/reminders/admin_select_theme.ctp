@@ -27,7 +27,7 @@
 	<li id="fall"><strong>Fall Theme</strong><br /><?php echo $html->image('theme_fall.jpg', array('width' => 150)); ?></li>
 	<li id="winter"><strong>Winter Theme</strong><br /><?php echo $html->image('theme_winter.jpg', array('width' => 150)); ?></li>
 	<li id="pet_adoption"><strong>Pet Adoption Theme</strong><br /><?php echo $html->image('theme_pet_adoption.jpg', array('width' => 150)); ?></li>
-	<li id="bca"><strong>Breast Cancer Awareness Theme</strong><br /><?php echo $html->image('theme_bca.jpg', array('width' => 150)); ?></li>
+	<li id="bca"><strong>Breast Cancer Awareness</strong><br /><?php echo $html->image('theme_bca.jpg', array('width' => 150)); ?></li>
 	<li id="thanksgiving"><strong>Thanksgiving Theme</strong><br /><?php echo $html->image('theme_thanksgiving.jpg', array('width' => 150)); ?></li>
 	<li id="halloween"><strong>Halloween Theme</strong><br /><?php echo $html->image('theme_halloween.jpg', array('width' => 150)); ?></li>
 	<li id="july4th"><strong>4th of July Theme</strong><br /><?php echo $html->image('theme_july4th.jpg', array('width' => 150)); ?></li>
